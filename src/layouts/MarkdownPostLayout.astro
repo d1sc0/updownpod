@@ -1,0 +1,77 @@
+---
+import BaseLayout from './BaseLayout.astro';
+const siteURL = 'https://hellostu.xyz';
+const { frontmatter, prevPost, nextPost, slug } = Astro.props;
+import JamComments from '@jam-comments/astro';
+import {
+  FacebookShareButton,
+  LinkedInShareButton,
+  RedditShareButton,
+  EmailShareButton,
+  WhatsAppShareButton,
+  SocialShare,
+} from 'astro-social-share';
+
+const BUTTONS = [
+  LinkedInShareButton,
+  RedditShareButton,
+  FacebookShareButton,
+  WhatsAppShareButton,
+  EmailShareButton,
+];
+
+const dateOptions: object = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+};
+
+const formattedPublishDate = new Date(frontmatter.pubDate).toLocaleDateString(
+  'en-UK',
+  dateOptions,
+);
+
+const isoDate = new Date(frontmatter.pubDate).toISOString();
+---
+
+<BaseLayout frontmatter={frontmatter} prevPost={prevPost} nextPost={nextPost}>
+  <section class="post content-padding h-entry">
+    <h2 class="title p-name">{frontmatter.title}</h2>
+    <div class="tags">
+      {
+        frontmatter.tags.map(tag => (
+          <span class="tag">
+            <a href={`/tags/${tag}`} class="p-category">
+              {tag}
+            </a>
+          </span>
+        ))
+      }
+    </div>
+    <p class="postDate">
+      Published: {formattedPublishDate}
+    </p>
+    <p class="e-content">
+      <slot />
+    </p>
+    <p style="display: none;">
+      <a href={slug} class="u-url dt-published">{isoDate}</a>
+      <a href={siteURL} class="p-author h-card" rel="author">Stuart Mackenzie</a
+      >
+    </p>
+    <SocialShare
+      buttons={BUTTONS}
+      description={frontmatter.description}
+      title={frontmatter.title}
+    />
+    <p>&nbsp;</p>
+    <h2 class="title p-name">{frontmatter.mp3}</h2>
+    <h2>Comment</h2>
+    <JamComments
+      dateFormat="d M Y"
+      copy={{
+        confirmationMessage: 'Comment successfully submitted for moderation!',
+      }}
+    />
+  </section>
+</BaseLayout>

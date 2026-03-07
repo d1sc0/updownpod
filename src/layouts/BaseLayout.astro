@@ -1,0 +1,47 @@
+---
+import HeadSEO from '../components/HeadSEO.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageScripts from '../components/PageScripts.astro';
+import '../styles/global.css';
+const { frontmatter, pageMeta, prevPost, nextPost } = Astro.props;
+---
+
+<html lang="en">
+  <HeadSEO frontmatter={frontmatter} pageMeta={pageMeta} />
+  <body>
+    <div class="container">
+      <Header />
+      <main>
+        <slot />
+        <p class="toplink content-padding">
+          <a href="#top">[Back to top]</a>
+        </p>
+      </main>
+      <section class="postNav">
+        {
+          prevPost && (
+            <div class="prevNav">
+              <a href={`/posts/${prevPost.slug}/`}>
+                &lt&lt {prevPost.data.title}
+              </a>
+            </div>
+          )
+        }
+        {!nextPost && prevPost && <div class="nextNav"> (｡◕‿‿◕｡) </div>}
+        {!prevPost && nextPost && <div class="prevNav"> (｡◕‿‿◕｡) </div>}
+        {
+          nextPost && (
+            <div class="nextNav">
+              <a href={`/posts/${nextPost.slug}/`}>
+                {nextPost.data.title} &gt&gt
+              </a>
+            </div>
+          )
+        }
+      </section>
+      <Footer />
+      <PageScripts />
+    </div>
+  </body>
+</html>

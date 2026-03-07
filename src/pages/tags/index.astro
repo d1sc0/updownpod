@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const posts = await getCollection('posts', ({ data }) => {
+  return import.meta.env.PROD ? data.draft !== true : true;
+});
+const tags = [...new Set(posts.map(post => post.data.tags).flat())];
+const tagCounts = tags.map(tag => {
+  const filteredPosts = posts.filter(post => post.data.tags.includes(tag));
+  const tagCount = filteredPosts.length;
+  return [tagCount, tag];
+});
+const pageMeta = {
+  title: 'Hello Stu | Tags',
+  description:
+    'An index of all the tags that have been used to categorise my blog posts and audio notes',
+  imageUrl: '/social_images/hellostu-social.jpg',
+};
+---
+
+<BaseLayout pageMeta={pageMeta}>
+  <section class="tag-index">
+    <h2 class="content-padding">Tag Collection</h2>
+    <div class="taglist content-padding">
+      {
+        tagCounts.map(tag => (
+          <span class="tag">
+            <a href={`/tags/${tag[1]}`}>
+              #{tag[1]} &lpar;{tag[0]}&rpar;
+            </a>
+          </span>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

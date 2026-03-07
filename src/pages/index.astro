@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LatestPosts from '../components/LatestPosts.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import Selfie from '../components/Selfie.astro';
+
+const pageMeta = {
+  title: 'Hello Stu | Home',
+  description:
+    'Hello Stu is the personal website and blog of Stuart Mackenzie. Stuart works hard to improve and transform public services as a Senior Partner at TPXimpact. Outside of work he is a photographer, amatuer web developer, runner, parkrun enthsiast and excotic disco dancer! ',
+  imageUrl: '/social_images/hellostu-social.jpg',
+};
+---
+
+<BaseLayout pageMeta={pageMeta}>
+  <section class="home">
+    <div class="content-padding">
+      <div class="welcome-grid">
+        <div class="profile-pic">
+          <Selfie />
+        </div>
+        <div class="welcome-text">
+          <p>
+            Hello, I'm <a href="/about">Stuart Mackenzie</a>. I spend most of my
+            days working hard to improve and transform public services as a
+            Senior Partner at <a href="https://tpximpact.com">TPXimpact</a>.
+            Outside of work I'm known for being a <a href="/tags/photography"
+              >photography nerd</a
+            >, <a href="/podcasts">occassional podcaster</a>, <a
+              href="/tags/tech">amatuer web developer</a
+            >, <a href="/tags/running">keen runner</a>, <a href="/tags/parkrun"
+              >regular parkrun volunteer</a
+            > and exotic disco dancer!
+          </p>
+          <p>
+            <strong>
+              This personal website functions as a space to share my thoughts
+              and ideas, work on experiments and make it easier for people to
+              <a href="/#socials">find me</a> across other bits of the internet. You
+              can find out more about me <a href="/about">here</a>.</strong
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <LatestPosts />
+  <SocialLinks />
+</BaseLayout>
