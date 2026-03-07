@@ -2,17 +2,5 @@
   "hosting": {
     "public": "dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
-    /*  "redirects": [
-      {
-        "source": "/podcast.xml",
-        "destination": "https://feeds.acast.com/public/shows/hello-stu",
-        "type": 301
-      },
-      {
-        "source": "/posts-rss.xml",
-        "destination": "https://url.com/rss.xml",
-        "type": 301
-      }
-    ] */
   }
 }
