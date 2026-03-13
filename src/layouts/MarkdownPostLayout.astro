@@ -52,6 +52,7 @@ const isoDate = new Date(frontmatter.pubDate).toISOString();
       Published: {formattedPublishDate}
     </p>
     <p class="e-content">
+      <h2 class="title p-name">{frontmatter.mp3}</h2>
       <slot />
     </p>
     <p style="display: none;">
@@ -65,7 +66,6 @@ const isoDate = new Date(frontmatter.pubDate).toISOString();
       title={frontmatter.title}
     />
     <p>&nbsp;</p>
-    <h2 class="title p-name">{frontmatter.mp3}</h2>
     <h2>Comment</h2>
     <JamComments
       dateFormat="d M Y"
