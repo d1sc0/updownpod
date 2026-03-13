@@ -147,7 +147,7 @@ section.latest {
 }
 
 section.home {
-  margin-bottom: 5rem;
+  margin-bottom: 2.5rem;
   margin-top: 3rem;
 }
 
@@ -174,13 +174,10 @@ section.episode li {
   margin-bottom: 1rem;
 }
 
-section.episode .tags {
-  margin-top: 0.2rem;
-}
 section.episode .episodeDate {
   margin-top: 0.2rem;
   display: inline-block;
-  background-color: var(--white);
+  background-color: none;
   margin-right: 15px;
   margin-bottom: 25px;
   padding: 3px;
@@ -244,7 +241,7 @@ section.home .welcome-grid p {
 section.home .profile-pic {
   border: 1px solid var(--graphite);
   padding: 1rem;
-  box-shadow: 5px 8px;
+  box-shadow: none;
   border-radius: 0.3rem;
   background-color: var(--blush-pop);
   height: min-content;
@@ -326,48 +323,6 @@ section.pagination {
   font-size: 1.2rem;
   border-radius: 0.5rem;
   cursor: pointer;
-}
-
-/*  Tag styling
---------------------------------------------------------------------------------------- */
-
-.taglist {
-  text-wrap: wrap;
-  text-align: center;
-  margin-top: 2rem;
-  margin-bottom: 4rem;
-}
-
-.tag {
-  font-size: 0.9rem;
-  display: inline-block;
-  background-color: var(--blush-pop);
-  margin-right: 15px;
-  margin-bottom: 10px;
-  padding: 3px;
-  padding-left: 11px;
-  padding-right: 11px;
-  border-radius: 8px;
-}
-
-.smalltag {
-  font-size: 0.8rem;
-  display: inline-block;
-  background-color: var(--blush-pop);
-  margin-right: 8px;
-  margin-bottom: 5px;
-  padding: 2px;
-  padding-left: 4px;
-  padding-right: 4px;
-  border-radius: 6px;
-}
-.tag a,
-.smalltag a {
-  color: var(--graphite);
-}
-.tag a:hover,
-.smalltag a:hover {
-  color: var(--full-spec-blue);
 }
 
 /*  Head and main nav styling */
@@ -719,12 +674,12 @@ div.jc-CommentList {
 
   section.home .welcome-grid {
     display: grid;
-    grid-template-columns: 2fr 4fr;
+    grid-template-columns: 1fr 2fr;
     grid-template-areas: 'profile welcome';
     grid-gap: 3rem;
   }
 
   section.home .welcome-grid p {
-    font-size: 1.6rem;
+    font-size: 1.1rem;
   }
 }
