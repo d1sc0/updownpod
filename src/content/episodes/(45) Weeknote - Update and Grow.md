@@ -8,13 +8,6 @@ episodeImage:
   src: episode_images/45-update-and-growFULL.jpg
   alt: a black and white slef portrait, a wall of art hangs behind me and my face hides behind my outstretched hands
 socialImage: /social_images/45-update-and-grow.jpg
-tags:
-  - weeknote
-  - work
-  - life
-  - self
-  - sick
-  - car
 ---
 
 ![a black and white slef portrait, a wall of art hangs behind me and my face hides behind my outstretched hands](episode_images/45-update-and-growFULL.jpg)

@@ -8,11 +8,6 @@ episodeImage:
   src: episode_images/43-assembly-requiredFULL.jpg
   alt: A black and white of ikea desk parts and fittings layed out on the carpet before me ready for assembly
 socialImage: /social_images/43-assembly-required.jpg
-tags:
-  - weeknote
-  - work
-  - life
-  - office
 ---
 
 I'll keep this one brief. Changes on the domestic front continue to move at pace and have consumed most of my energy outside of working days. Writing this is a struggle through the fog of jobs to be done and things to process.

@@ -22,13 +22,4 @@ const formattedPublishDate = new Date(data.pubDate).toLocaleDateString(
   <a href={url}><h3>{data.title}</h3></a>
   <p>{formattedPublishDate}</p>
   <p>{data.description}</p>
-  <p>
-    {
-      data.tags.map(tag => (
-        <span class="smalltag">
-          <a href={`/tags/${tag}`}>#{tag}</a>
-        </span>
-      ))
-    }
-  </p>
 </article>

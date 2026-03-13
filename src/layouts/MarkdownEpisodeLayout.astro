@@ -41,17 +41,6 @@ const isoDate = new Date(frontmatter.pubDate).toISOString();
 >
   <section class="episode content-padding h-entry">
     <h2 class="title p-name">{frontmatter.title}</h2>
-    <div class="tags">
-      {
-        frontmatter.tags.map(tag => (
-          <span class="tag">
-            <a href={`/tags/${tag}`} class="p-category">
-              {tag}
-            </a>
-          </span>
-        ))
-      }
-    </div>
     <p class="episodeDate">
       Published: {formattedPublishDate}
     </p>

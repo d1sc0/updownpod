@@ -8,13 +8,6 @@ episodeImage:
   src: episode_images/49-new-plansFULL.jpg
   alt: a kitchen selfie with me giving peace fingers wearing my lovely orange vaga hat
 socialImage: /social_images/49-new-plans.jpg
-tags:
-  - life
-  - birthday
-  - walking
-  - plans
-  - challenge
-  - invite
 ---
 
 Okay, so I [previously episodeed](https://hellostu.xyz/episodes/46-before-46/) about challenging myself to a 46km walk at the end of August for my Birthday, and a few lovely folks showed an interest in tagging along. Thank you! I now need to let you all know that I've changed my mind and decided against it. Sorry!

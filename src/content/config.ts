@@ -15,7 +15,6 @@ const episodesCollection = defineCollection({
       }),
       socialImage: z.string().optional(),
       mp3: z.string().url().optional(),
-      tags: z.array(z.string()),
       draft: z.boolean().optional(),
     }),
 });

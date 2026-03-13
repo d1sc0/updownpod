@@ -8,14 +8,6 @@ episodeImage:
   src: episode_images/47-trainFULL.jpg
   alt: a photo of a sticker that reads Hello my name is Stuart stuck to the back of a seat in an empty train carriage
 socialImage: /social_images/47-train.jpg
-tags:
-  - weeknote
-  - work
-  - life
-  - bread
-  - photography
-  - productforthepeople
-  - dating
 ---
 
 ![a photo of a sticker that reads Hello my name is Stuart stuck to the back of a seat in an empty train carriage](episode_images/47-trainFULL.jpg)
