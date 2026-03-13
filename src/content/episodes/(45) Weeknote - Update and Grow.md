@@ -4,8 +4,8 @@ draft: false
 slug: weeknote-update-and-grow
 pubDate: 2024-08-16T10:20:00
 description: a note containing some excuses, a plan, some updates and some reminders of things I should celebrate. This note covers the last couple of week until today 16th August 24.
-postImage:
-  src: post_images/45-update-and-growFULL.jpg
+episodeImage:
+  src: episode_images/45-update-and-growFULL.jpg
   alt: a black and white slef portrait, a wall of art hangs behind me and my face hides behind my outstretched hands
 socialImage: /social_images/45-update-and-grow.jpg
 tags:
@@ -17,7 +17,7 @@ tags:
   - car
 ---
 
-![a black and white slef portrait, a wall of art hangs behind me and my face hides behind my outstretched hands](post_images/45-update-and-growFULL.jpg)
+![a black and white slef portrait, a wall of art hangs behind me and my face hides behind my outstretched hands](episode_images/45-update-and-growFULL.jpg)
 
 ## Excuses
 
@@ -27,7 +27,7 @@ Until then, I intend to...
 
 - Continue the writing habit and practice
 - Accept that my weeknote output will be biased towards life-life and not work-life
-- Share my posts in fewer places (because they'll be more personal and less relevant to others)
+- Share my episodes in fewer places (because they'll be more personal and less relevant to others)
 - Try to feel less guilt and anxiety about all of the above.
 
 ## Update

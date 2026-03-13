@@ -60,7 +60,7 @@ footer {
   background-color: none;
 }
 
-.postNav {
+.episodeNav {
   max-width: 72rem;
   margin: 0 auto;
 }
@@ -111,7 +111,7 @@ p {
   margin: 0 0 0.8rem 0;
 }
 
-.post p {
+.episode p {
   margin: 1.2rem 0 1.2rem 0;
   line-height: 1.5em;
 }
@@ -152,7 +152,7 @@ section.home {
 }
 
 section.home img,
-section.post.img {
+section.episode.img {
   width: 100%;
   height: auto;
 }
@@ -162,22 +162,22 @@ section.about {
   margin-top: 3rem;
 }
 
-section.post {
+section.episode {
   margin-bottom: 6rem;
 }
 
-section.post h2.title {
+section.episode h2.title {
   font-size: 2.2rem;
 }
 
-section.post li {
+section.episode li {
   margin-bottom: 1rem;
 }
 
-section.post .tags {
+section.episode .tags {
   margin-top: 0.2rem;
 }
-section.post .postDate {
+section.episode .episodeDate {
   margin-top: 0.2rem;
   display: inline-block;
   background-color: var(--white);
@@ -204,7 +204,7 @@ section.footer .social-icon {
 
 /* grids and more section styles */
 
-section.postgrid .grid,
+section.episodegrid .grid,
 section.audiogrid .grid,
 section.latest .grid {
   display: grid;
@@ -281,7 +281,7 @@ section article img {
   border: 1px solid var(--graphite);
 }
 
-section.postgrid .grid article {
+section.episodegrid .grid article {
   background-color: var(--blush-pop);
 }
 
@@ -291,7 +291,7 @@ section.pagination {
   font-size: 1.3rem;
 }
 
-.postNav {
+.episodeNav {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
@@ -532,7 +532,7 @@ nav ul li {
 }
 
 .imageFull,
-section.post img[src*='FULL'] {
+section.episode img[src*='FULL'] {
   width: 100%;
   height: auto;
   margin-bottom: 0rem;
@@ -540,7 +540,7 @@ section.post img[src*='FULL'] {
 }
 
 .imageLeft,
-section.post img[src*='RIGHT'] {
+section.episode img[src*='RIGHT'] {
   width: 100%;
   height: auto;
   margin: 0;
@@ -549,7 +549,7 @@ section.post img[src*='RIGHT'] {
 }
 
 .imageRight,
-section.post img[src*='LEFT'] {
+section.episode img[src*='LEFT'] {
   width: 100%;
   height: auto;
   margin: 0;
@@ -628,7 +628,7 @@ div.jc-CommentList {
   /* desktop media styles */
 
   .imageFull,
-  section.post img[src*='FULL'] {
+  section.episode img[src*='FULL'] {
     width: 100%;
     height: auto;
     margin-bottom: 0rem;
@@ -636,7 +636,7 @@ div.jc-CommentList {
   }
 
   .imageLeft,
-  section.post img[src*='LEFT'] {
+  section.episode img[src*='LEFT'] {
     width: 50%;
     height: auto;
     margin-top: 0.2rem;
@@ -647,7 +647,7 @@ div.jc-CommentList {
   }
 
   .imageRight,
-  section.post img[src*='RIGHT'] {
+  section.episode img[src*='RIGHT'] {
     width: 50%;
     height: auto;
     margin-top: 0.2rem;
@@ -702,7 +702,7 @@ div.jc-CommentList {
 
   /* desktop grid styles */
 
-  section.postgrid .grid,
+  section.episodegrid .grid,
   section.audiogrid .grid {
     display: grid;
     grid-template-rows: auto;

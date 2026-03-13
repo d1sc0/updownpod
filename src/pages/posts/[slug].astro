@@ -1,33 +1,33 @@
 ---
 import { getCollection } from 'astro:content';
-import MarkdownPostLayout from '../../layouts/MarkdownPostLayout.astro';
+import MarkdownEpisodeLayout from '../../layouts/MarkdownEpisodeLayout.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts', ({ data }) => {
+  const episodes = await getCollection('episodes', ({ data }) => {
     return import.meta.env.PROD ? data.draft !== true : true;
   });
-  posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-  const postCount = posts.length;
+  episodes.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  const episodeCount = episodes.length;
 
-  return posts.map((entry, index) => ({
+  return episodes.map((entry, index) => ({
     params: { slug: entry.slug },
     props: {
       entry,
-      nextPost: index + 1 !== postCount ? posts[index + 1] : null,
-      prevPost: index !== 0 ? posts[index - 1] : null,
+      nextepisode: index + 1 !== episodeCount ? episodes[index + 1] : null,
+      prevepisode: index !== 0 ? episodes[index - 1] : null,
     },
   }));
 }
 
-const { entry, prevPost, nextPost } = Astro.props;
+const { entry, prevepisode, nextepisode } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<MarkdownPostLayout
+<MarkdownEpisodeLayout
   frontmatter={entry.data}
   slug={entry.slug}
-  prevPost={prevPost}
-  nextPost={nextPost}
+  prevepisode={prevepisode}
+  nextepisode={nextepisode}
 >
   <Content />
-</MarkdownPostLayout>
+</MarkdownEpisodeLayout>

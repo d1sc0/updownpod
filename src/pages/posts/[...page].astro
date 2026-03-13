@@ -2,31 +2,31 @@
 import type { Page } from 'astro';
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PostGrid from '../../components/PostGrid.astro';
+import EpisodeGrid from '../../components/EpisodeGrid.astro';
 import Pagination from '../../components/Pagination.astro';
 
 export async function getStaticPaths({ paginate }) {
-  const posts = await getCollection('posts', ({ data }) => {
+  const episodes = await getCollection('episodes', ({ data }) => {
     return import.meta.env.PROD ? data.draft !== true : true;
   });
-  posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  episodes.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-  return paginate(posts, { pageSize: 9 });
+  return paginate(episodes, { pageSize: 9 });
 }
 
 // All paginated data is passed on the "page" prop
-type Props = { page: Page<CollectionEntry<'posts'>> };
+type Props = { page: Page<CollectionEntry<'episodes'>> };
 const { page } = Astro.props;
-const posts = page.data;
-const pageTitle = 'All Posts';
+const episodes = page.data;
+const pageTitle = 'All episodes';
 const pageMeta = {
   title: 'Hello Stu | ' + pageTitle,
-  description: 'All of my blog posts and audio notes in one place',
+  description: 'All of my blog episodes and audio notes in one place',
   imageUrl: '/social_images/hellostu-social.jpg',
 };
 ---
 
 <BaseLayout pageMeta={pageMeta}>
-  <PostGrid posts={posts} gridTitle={pageTitle} />
+  <EpisodeGrid episodes={episodes} gridTitle={pageTitle} />
   <Pagination pageData={page} />
 </BaseLayout>

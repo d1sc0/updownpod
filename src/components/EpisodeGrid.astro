@@ -1,0 +1,15 @@
+---
+const { episodes, gridTitle } = Astro.props;
+import EpisodePreview from './EpisodePreview.astro';
+---
+
+<section class="episodegrid">
+  <h2 class="content-padding">{gridTitle}</h2>
+  <div class="grid content-padding">
+    {
+      episodes.map(episode => (
+        <EpisodePreview url={'/episodes/' + episode.slug} data={episode.data} />
+      ))
+    }
+  </div>
+</section>

@@ -2,14 +2,14 @@
 import { z, defineCollection } from 'astro:content';
 
 // Define a `type` and `schema` for each collection
-const postsCollection = defineCollection({
+const episodesCollection = defineCollection({
   type: 'content',
   schema: ({ image }) =>
     z.object({
       title: z.string(),
       pubDate: z.date(),
       description: z.string(),
-      postImage: z.object({
+      episodeImage: z.object({
         src: image(),
         alt: z.string(),
       }),
@@ -22,5 +22,5 @@ const postsCollection = defineCollection({
 
 // Export a single `collections` object to register your collection(s)
 export const collections = {
-  posts: postsCollection,
+  episodes: episodesCollection,
 };

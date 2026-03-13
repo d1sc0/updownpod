@@ -8,14 +8,14 @@ const dateOptions: object = {
 };
 const formattedPublishDate = new Date(data.pubDate).toLocaleDateString(
   'en-UK',
-  dateOptions
+  dateOptions,
 );
 ---
 
 <article>
   <Image
-    src={data.postImage.src}
-    alt={data.postImage.alt}
+    src={data.episodeImage.src}
+    alt={data.episodeImage.alt}
     width="300"
     quality="high"
   />

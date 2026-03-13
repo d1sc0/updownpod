@@ -1,6 +1,6 @@
 ---
-const { posts, gridTitle } = Astro.props;
-import PostPreview from './PostPreview.astro';
+const { episodes, gridTitle } = Astro.props;
+import EpisodePreview from './EpisodePreview.astro';
 ---
 
 <section class="audiogrid">
@@ -30,11 +30,11 @@ import PostPreview from './PostPreview.astro';
 
   <div class="grid content-padding">
     {
-      posts.map(post => (
-        <PostPreview
-          url={'/posts/' + post.slug}
-          data={post.data}
-          id={post.id}
+      episodes.map(episode => (
+        <EpisodePreview
+          url={'/episodes/' + episode.slug}
+          data={episode.data}
+          id={episode.id}
         />
       ))
     }
