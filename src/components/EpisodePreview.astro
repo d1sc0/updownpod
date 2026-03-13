@@ -16,7 +16,8 @@ const formattedPublishDate = new Date(data.pubDate).toLocaleDateString(
   <Image
     src={data.episodeImage.src}
     alt={data.episodeImage.alt}
-    width="300"
+    width="200"
+    height="200"
     quality="high"
   />
   <a href={url}><h3>{data.title}</h3></a>

@@ -273,7 +273,8 @@ section article {
 
 section article img {
   width: 100%;
-  height: 180px;
+  aspect-ratio: 1/1;
+  max-height: 100%;
   object-fit: cover;
   border: 1px solid var(--graphite);
 }
@@ -668,7 +669,7 @@ div.jc-CommentList {
   section.latest .grid {
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 2rem;
   }
 
