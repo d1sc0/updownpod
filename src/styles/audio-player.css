@@ -4,7 +4,6 @@
   border: 2px solid var(--graphite);
   border-radius: 8px;
   padding: 1.5rem;
-  margin: 1rem 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -14,6 +13,7 @@
 
 .audio-info {
   margin-bottom: 0.75rem;
+  margin-right: 0.75rem;
 }
 
 .player-content-grid {
@@ -231,47 +231,6 @@
 }
 
 /* Latest Episode Player Styles */
-.latest-episode-player {
-  margin: 2rem 0;
-}
-
-.latest-episode-player > h2 {
-  font-family: var(--Jersey15), sans-serif;
-  font-size: 2.3rem;
-  margin-bottom: 0;
-}
-
-.episode-grid {
-  display: grid;
-  gap: 2rem;
-  align-items: start;
-}
-
-/* Desktop: 1 row, 2 columns */
-@media (min-width: 768px) {
-  .episode-grid {
-    grid-template-columns: 60% 40%;
-  }
-}
-
-/* Mobile: 1 column, 2 rows */
-@media (max-width: 767px) {
-  .episode-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.audio-player-section {
-  /* Audio player container */
-}
-
-.episode-info-section {
-  margin-top: 1rem;
-}
-
-.latest-episode-player .episode-info-section .subscribe-links {
-  margin-top: 0;
-}
 
 .episode-date {
   font-size: 0.9rem;
@@ -291,31 +250,11 @@
   min-height: 0; /* Allow flex item to shrink */
 }
 
-.player-content-grid .episode-image-placeholder {
-  margin: 0;
-}
-
-.latest-episode-player .player-content-grid .episode-image {
+.player-content-grid .episode-image {
   width: 100%;
   max-width: 100%;
   height: auto;
   border-radius: 8px;
-}
-
-.full-episode-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.2s;
-  margin-top: 1rem;
-}
-
-.full-episode-btn:hover {
-  background-color: #0056b3;
 }
 
 #audio-element {

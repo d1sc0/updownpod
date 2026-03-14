@@ -1,8 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import LatestEpisodes from '../components/LatestEpisodes.astro';
-import LatestEpisodePlayer from '../components/LatestEpisodePlayer.astro';
-
+import LatestEpisode from '../components/LatestEpisode.astro';
+import SubscribeLinks from '../components/SubscribeLinks.astro';
 const pageMeta = {
   title: 'Hello Stu | Home',
   description:
@@ -12,9 +11,22 @@ const pageMeta = {
 ---
 
 <BaseLayout pageMeta={pageMeta}>
-  <section class="home">
-    <div class="content-padding">
-      <LatestEpisodePlayer />
-    </div>
-  </section>
+  <div class="content-padding">
+    <p>
+      The upstairs / downstairs podcast follows the trials and tribulations of
+      father (Stuart) and daughter (Robyn) as they battle lifes challenges and
+      the frequent first world problems they encounter whilst living and working
+      together from home.
+    </p>
+    <p>
+      It’s a witty, cross-generational look at suburban survival, where
+      high-minded values meet the daily reality of who has or hasn't stacked the
+      dishwasher.
+    </p>
+    <h2 class="latest-title">Latest Episode</h2>
+    <section class="home">
+      <LatestEpisode />
+      <SubscribeLinks />
+    </section>
+  </div>
 </BaseLayout>
