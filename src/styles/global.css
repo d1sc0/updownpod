@@ -205,7 +205,6 @@ section.footer .social-icon {
 /* grids and more section styles */
 
 section.episodegrid .grid,
-section.audiogrid .grid,
 section.latest .grid {
   display: grid;
   grid-template-rows: auto;
@@ -217,53 +216,6 @@ section.latest .grid {
 section.latest .morelink {
   text-align: right;
   margin: 0;
-}
-
-section.home .welcome-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    'welcome'
-    'profile';
-  grid-gap: 0rem;
-  background-color: none;
-}
-
-section.home .welcome-grid .profile-pic {
-  grid-area: profile;
-}
-
-section.home .welcome-grid .welcome-text {
-  grid-area: welcome;
-}
-
-section.home .welcome-grid p {
-  font-size: 1.1rem;
-}
-
-section.home .profile-pic {
-  border: 1px solid var(--graphite);
-  padding: 1rem;
-  box-shadow: none;
-  border-radius: 0.3rem;
-  background-color: var(--blush-pop);
-  height: min-content;
-}
-
-section.home .profile-pic img {
-  border: 1px solid var(--graphite);
-  min-width: 280px;
-}
-
-section.home .profile-pic figcaption {
-  font-family: var(--Jersey15), sans-serif;
-  font-size: 2rem;
-  line-height: 3.5rem;
-  text-align: center;
-}
-
-section.audiogrid .subscription {
-  margin-bottom: 3rem;
 }
 
 section article {
@@ -284,6 +236,10 @@ section article img {
 
 section.episodegrid .grid article {
   background-color: var(--blush-pop);
+}
+
+section.episodegrid article {
+  box-shadow: none;
 }
 
 section.pagination {
@@ -609,8 +565,7 @@ section.episode img[src*='LEFT'] {
 
   /* desktop grid styles */
 
-  section.episodegrid .grid,
-  section.audiogrid .grid {
+  section.episodegrid .grid {
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: 1fr 1fr 1fr;
@@ -623,15 +578,44 @@ section.episode img[src*='LEFT'] {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 2rem;
   }
+}
 
-  section.home .welcome-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-areas: 'profile welcome';
-    grid-gap: 3rem;
-  }
+/* Subscribe Links Styles */
+.subscribe-links {
+  margin: 2rem 0;
+}
 
-  section.home .welcome-grid p {
-    font-size: 1.1rem;
-  }
+.subscribe-platforms {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.subscribe-platforms li {
+  /* No flex properties needed for vertical centering */
+}
+
+.subscribe-platforms a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s;
+}
+
+.subscribe-platforms a:hover {
+  background-color: #f0f0f0;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
 }

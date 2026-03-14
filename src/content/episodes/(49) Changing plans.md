@@ -3,7 +3,7 @@ title: Changing Plans
 draft: false
 slug: changing-plans
 pubDate: 2025-08-03
-description: episodeing about updated plans for my Birthday at the end of the month. A boy just wants to have fun, and this is how I intend to celebrate this year.
+description: posting about updated plans for my Birthday at the end of the month. A boy just wants to have fun, and this is how I intend to celebrate this year.
 episodeImage:
   src: episode_images/49-new-plansFULL.jpg
   alt: a kitchen selfie with me giving peace fingers wearing my lovely orange vaga hat

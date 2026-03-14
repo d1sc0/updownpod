@@ -3,8 +3,13 @@
   background-color: var(--white);
   border: 2px solid var(--graphite);
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1.5rem;
   margin: 1rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .audio-info {
@@ -197,6 +202,82 @@
   border-radius: 50%;
   cursor: pointer;
   border: none;
+}
+
+/* Latest Episode Player Styles */
+.latest-episode-player {
+  margin: 2rem 0;
+}
+
+.episode-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Desktop: 1 row, 2 columns */
+@media (min-width: 768px) {
+  .episode-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mobile: 1 column, 2 rows */
+@media (max-width: 767px) {
+  .episode-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.audio-player-section {
+  /* Audio player container */
+}
+
+.episode-info-section {
+  /* Text content container */
+}
+
+.episode-date {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.episode-excerpt {
+  margin: 1rem 0;
+}
+
+.episode-image-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 1rem 0;
+  min-height: 0; /* Allow flex item to shrink */
+}
+
+.image-placeholder-content {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.full-episode-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+  margin-top: 1rem;
+}
+
+.full-episode-btn:hover {
+  background-color: #0056b3;
 }
 
 #audio-element {
