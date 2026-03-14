@@ -642,9 +642,4 @@ section.episode img[src*='LEFT'] {
   nav ul li:first-of-type {
     border: none;
   }
-
-  img.site-title {
-    width: 350px;
-    height: 102px;
-  }
 }
