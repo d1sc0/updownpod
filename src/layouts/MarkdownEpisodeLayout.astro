@@ -49,6 +49,9 @@ const isoDate = new Date(frontmatter.pubDate).toISOString();
         <source src={frontmatter.mp3} type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
+      <div class="audio-info">
+        <div id="track-title" class="track-title">{frontmatter.mp3title}</div>
+      </div>
       <div class="audio-controls">
         <button id="play-pause-btn" class="play-btn" aria-label="Play">
           <svg

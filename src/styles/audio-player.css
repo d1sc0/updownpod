@@ -5,7 +5,18 @@
   border-radius: 8px;
   padding: 1rem;
   margin: 1rem 0;
-  box-shadow: 3px 3px 0 var(--graphite);
+}
+
+.audio-info {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.track-title {
+  font-weight: bold;
+  color: var(--graphite);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
 }
 
 .audio-controls {
@@ -26,22 +37,52 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 2px 2px 0 var(--graphite);
 }
 
 #play-pause-btn:hover {
   background: var(--blush-pop);
   transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0 var(--graphite);
+}
+
+#play-pause-btn.playing {
+  background: var(--blush-pop);
+  border-style: dashed;
+  animation: rotate 3.125s linear infinite;
+}
+
+#play-pause-btn.playing svg {
+  animation: counter-rotate 3.125s linear infinite;
+}
+
+@keyframes counter-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+#play-pause-btn.playing svg path {
+  d: path('M6 19h4V5H6v14zm8-14v14h4V5h-4z'); /* Pause symbol */
+}
+
+#play-pause-btn.paused {
+  background: var(--blush-pop);
+  border-style: dashed;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #play-pause-btn:active {
   transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0 var(--graphite);
-}
-
-#play-pause-btn.paused svg path {
-  d: path('M6 19h4V5H6v14zm8-14v14h4V5h-4z');
 }
 
 .progress-container {

@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const volumeSlider = document.getElementById('volume-slider');
   const volumeBtn = document.getElementById('volume-btn');
   const progressBar = document.querySelector('.progress-bar');
+  const trackTitleEl = document.getElementById('track-title');
 
   let isPlaying = false;
 
@@ -28,12 +29,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Update duration when metadata loads
   audio.addEventListener('loadedmetadata', function () {
-    console.log('Audio duration loaded:', audio.duration);
     if (audio.duration && !isNaN(audio.duration)) {
       durationEl.textContent = formatTime(audio.duration);
       progressSlider.max = 100;
     }
+
+    updateTrackTitle();
   });
+
+  // Function to update track title and Media Session
+  function updateTrackTitle() {
+    // Set up Media Session API for better metadata display
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: trackTitleEl.textContent,
+        artist: 'Upstairs Downstairs Podcast',
+        album: 'Up Down Pod',
+      });
+
+      // Set up media session action handlers
+      navigator.mediaSession.setActionHandler('play', () => {
+        audio.play();
+        isPlaying = true;
+        playPauseBtn.classList.remove('paused');
+      });
+
+      navigator.mediaSession.setActionHandler('pause', () => {
+        audio.pause();
+        isPlaying = false;
+        playPauseBtn.classList.add('paused');
+      });
+
+      navigator.mediaSession.setActionHandler('seekbackward', () => {
+        audio.currentTime = Math.max(audio.currentTime - 10, 0);
+      });
+
+      navigator.mediaSession.setActionHandler('seekforward', () => {
+        audio.currentTime = Math.min(audio.currentTime + 10, audio.duration);
+      });
+    }
+
+    console.log('Track title and Media Session updated');
+  }
 
   // Handle audio load errors
   audio.addEventListener('error', function (e) {
@@ -65,22 +102,29 @@ document.addEventListener('DOMContentLoaded', function () {
       audio.pause();
       playPauseBtn.classList.add('paused');
       playPauseBtn.setAttribute('aria-label', 'Play');
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.playbackState = 'paused';
+      }
     } else {
       audio.play();
       playPauseBtn.classList.remove('paused');
       playPauseBtn.setAttribute('aria-label', 'Pause');
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.playbackState = 'playing';
+      }
     }
     isPlaying = !isPlaying;
   });
 
-  // Handle audio end
-  audio.addEventListener('ended', function () {
-    isPlaying = false;
-    playPauseBtn.classList.add('paused');
-    playPauseBtn.setAttribute('aria-label', 'Play');
+  // Handle play event for button animation
+  audio.addEventListener('play', function () {
+    playPauseBtn.classList.add('playing');
   });
 
-  // Progress bar click to seek
+  // Handle pause event for button animation
+  audio.addEventListener('pause', function () {
+    playPauseBtn.classList.remove('playing');
+  });
   progressBar.addEventListener('click', function (e) {
     const rect = progressBar.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
