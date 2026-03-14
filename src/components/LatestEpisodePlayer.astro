@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import '../styles/audio-player.css';
 const allEpisodes = await getCollection('episodes', ({ data }) => {
   return import.meta.env.PROD ? data.draft !== true : true;
 });
@@ -26,6 +28,7 @@ const uniqueId = `audio-player-${Math.random().toString(36).substr(2, 9)}`;
 {
   latestEpisode && (
     <section class="latest-episode-player">
+      <h2>Latest Episode</h2>
       <div class="episode-grid">
         <div class="audio-player-section">
           <div class="custom-audio-player" data-player-id={uniqueId}>
@@ -33,23 +36,14 @@ const uniqueId = `audio-player-${Math.random().toString(36).substr(2, 9)}`;
               <source src={latestEpisode.data.mp3} type="audio/mpeg" />
               Your browser does not support the audio element.
             </audio>
-            <div class="audio-info">
-              <div id={`track-title-${uniqueId}`} class="track-title">
-                {latestEpisode.data.mp3title}
-              </div>
-            </div>
             <div class="episode-image-placeholder">
-              <div class="image-placeholder-content">
-                <svg
-                  width="48"
-                  height="48"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  opacity="0.3"
-                >
-                  <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
-                </svg>
-              </div>
+              <Image
+                src={latestEpisode.data.socialImage}
+                alt="Episode cover"
+                width={400}
+                height={400}
+                class="episode-image"
+              />
             </div>
             <div class="audio-controls">
               <button
@@ -67,23 +61,28 @@ const uniqueId = `audio-player-${Math.random().toString(36).substr(2, 9)}`;
                   <path d="M8 5v14l11-7z" fill="currentColor" />
                 </svg>
               </button>
-              <div class="progress-container">
-                <div class="progress-bar">
-                  <div class="progress-fill" id={`progress-fill-${uniqueId}`} />
+              <div class="progress-time-container">
+                <div class="progress-container">
+                  <div class="progress-bar">
+                    <div
+                      class="progress-fill"
+                      id={`progress-fill-${uniqueId}`}
+                    />
+                  </div>
+                  <input
+                    type="range"
+                    id={`progress-slider-${uniqueId}`}
+                    class="progress-slider"
+                    min="0"
+                    max="100"
+                    value="0"
+                    step="0.1"
+                  />
                 </div>
-                <input
-                  type="range"
-                  id={`progress-slider-${uniqueId}`}
-                  class="progress-slider"
-                  min="0"
-                  max="100"
-                  value="0"
-                  step="0.1"
-                />
-              </div>
-              <div class="time-display">
-                <span id={`current-time-${uniqueId}`}>0:00</span> /{' '}
-                <span id={`duration-${uniqueId}`}>0:00</span>
+                <div class="time-display">
+                  <span id={`current-time-${uniqueId}`}>0:00</span> /{' '}
+                  <span id={`duration-${uniqueId}`}>0:00</span>
+                </div>
               </div>
               <div class="volume-container">
                 <button
@@ -118,7 +117,6 @@ const uniqueId = `audio-player-${Math.random().toString(36).substr(2, 9)}`;
           </div>
         </div>
         <div class="episode-info-section">
-          <h2>Latest Episode</h2>
           <h3>{latestEpisode.data.title}</h3>
           <p class="episode-date">{formattedPublishDate}</p>
           <p class="episode-excerpt">{latestEpisode.data.description}</p>
