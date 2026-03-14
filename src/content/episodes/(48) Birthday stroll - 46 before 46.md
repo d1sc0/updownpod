@@ -8,6 +8,7 @@ episodeImage:
   src: episode_images/48-mapRIGHT.jpg
   alt: a map showing the intended route of my birthday walk route from portland to dorchester depicted by a red line
 socialImage: /social_images/48-map.jpg
+mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
 ---
 
 ![a map showing the intended route of my birthday walk route from portland to dorchester depicted by a red line](episode_images/48-mapRIGHT.jpg) On August 31, 2025, I'll turn the ripe old age of 46 years old (I know - I don't look a day over 52!). To mark this occasion, I've decided to set myself a little challenge on Saturday, 30th to walk 46km (28.5 miles). I set myself similar challenges in 2012 and 2013, where I ran 26.2 miles with friends over a similar route.

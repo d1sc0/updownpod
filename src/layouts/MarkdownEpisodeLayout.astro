@@ -44,8 +44,65 @@ const isoDate = new Date(frontmatter.pubDate).toISOString();
     <p class="episodeDate">
       Published: {formattedPublishDate}
     </p>
+    <div class="custom-audio-player">
+      <audio id="audio-element" preload="metadata">
+        <source src={frontmatter.mp3} type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+      <div class="audio-controls">
+        <button id="play-pause-btn" class="play-btn" aria-label="Play">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M8 5v14l11-7z" fill="currentColor"></path>
+          </svg>
+        </button>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <input
+            type="range"
+            id="progress-slider"
+            min="0"
+            max="100"
+            value="0"
+            step="0.1"
+          />
+        </div>
+        <div class="time-display">
+          <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+        </div>
+        <div class="volume-container">
+          <button id="volume-btn" aria-label="Volume">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+                fill="currentColor"></path>
+            </svg>
+          </button>
+          <input
+            type="range"
+            id="volume-slider"
+            min="0"
+            max="1"
+            value="1"
+            step="0.01"
+          />
+        </div>
+      </div>
+    </div>
     <p class="e-content">
-      <h2 class="title p-name">{frontmatter.mp3}</h2>
       <slot />
     </p>
     <p style="display: none;">
@@ -68,3 +125,7 @@ const isoDate = new Date(frontmatter.pubDate).toISOString();
     />
   </section>
 </BaseLayout>
+
+<script>
+  import '../components/audio-controls.js';
+</script>

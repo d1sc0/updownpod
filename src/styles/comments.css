@@ -1,0 +1,52 @@
+/*------Commenting Styles--------*/
+ul.jc-Editor-tabs {
+  display: none;
+}
+small.jc-CommentBox-attribution {
+  display: inital;
+}
+div.jc-Auth-container {
+  display: none;
+}
+
+button.jc-CommentBox-button {
+  background-color: var(--blush-pop);
+  width: 100px;
+  padding: 0.5rem;
+  color: var(--graphite);
+  border: none;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+button.jc-Comment-actionButton {
+  display: none;
+  background-color: var(--blush-pop);
+  width: 75px;
+  padding: 0.5rem;
+  color: var(--graphite);
+  border: none;
+  font-size: 0.8rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+div.jc-Comment-actions:before,
+span.jc-CommentList-count:after,
+.jc-CommentList-count:after,
+div.jc-Comment-actions {
+  display: none;
+}
+.jc-CommentList-count:after ul.jc-Comment-actionList {
+  margin-left: 0rem;
+}
+
+.jc-CommentList-count:after {
+  display: none !important;
+}
+
+div.jc-CommentList {
+  padding-top: 2rem;
+  overflow: visible;
+}
