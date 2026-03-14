@@ -9,6 +9,7 @@ episodeImage:
   alt: A black and white of ikea desk parts and fittings layed out on the carpet before me ready for assembly
 socialImage: /social_images/43-assembly-required.jpg
 mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
+mp3title: 'Episode 2 - Yes yes'
 ---
 
 I'll keep this one brief. Changes on the domestic front continue to move at pace and have consumed most of my energy outside of working days. Writing this is a struggle through the fog of jobs to be done and things to process.

@@ -9,6 +9,7 @@ episodeImage:
   alt: a black and white slef portrait, a wall of art hangs behind me and my face hides behind my outstretched hands
 socialImage: /social_images/45-update-and-grow.jpg
 mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
+mp3title: 'Episode 4 - Ouch'
 ---
 
 ![a black and white slef portrait, a wall of art hangs behind me and my face hides behind my outstretched hands](episode_images/45-update-and-growFULL.jpg)

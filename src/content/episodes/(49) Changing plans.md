@@ -9,7 +9,7 @@ episodeImage:
   alt: a kitchen selfie with me giving peace fingers wearing my lovely orange vaga hat
 socialImage: /social_images/49-new-plans.jpg
 mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
-mp3title: 'Upstairs Downstairs Podcast: Episode 1 - Changing Plans'
+mp3title: 'Episode 8 - No Minister'
 ---
 
 Okay, so I [previously episodeed](https://hellostu.xyz/episodes/46-before-46/) about challenging myself to a 46km walk at the end of August for my Birthday, and a few lovely folks showed an interest in tagging along. Thank you! I now need to let you all know that I've changed my mind and decided against it. Sorry!

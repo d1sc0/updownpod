@@ -9,6 +9,7 @@ episodeImage:
   alt: a photo of a sticker that reads Hello my name is Stuart stuck to the back of a seat in an empty train carriage
 socialImage: /social_images/47-train.jpg
 mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
+mp3title: 'Episode 6 - I love you'
 ---
 
 ![a photo of a sticker that reads Hello my name is Stuart stuck to the back of a seat in an empty train carriage](episode_images/47-trainFULL.jpg)

@@ -26,7 +26,7 @@
   flex-wrap: wrap;
 }
 
-#play-pause-btn {
+.play-btn {
   background: var(--green-yellow);
   border: 2px solid var(--graphite);
   border-radius: 50%;
@@ -39,18 +39,18 @@
   transition: all 0.2s ease;
 }
 
-#play-pause-btn:hover {
+.play-btn:hover {
   background: var(--blush-pop);
   transform: translate(-1px, -1px);
 }
 
-#play-pause-btn.playing {
+.play-btn.playing {
   background: var(--blush-pop);
   border-style: dashed;
   animation: rotate 3.125s linear infinite;
 }
 
-#play-pause-btn.playing svg {
+.play-btn.playing svg {
   animation: counter-rotate 3.125s linear infinite;
 }
 
@@ -63,11 +63,11 @@
   }
 }
 
-#play-pause-btn.playing svg path {
+.play-btn.playing svg path {
   d: path('M6 19h4V5H6v14zm8-14v14h4V5h-4z'); /* Pause symbol */
 }
 
-#play-pause-btn.paused {
+.play-btn.paused {
   background: var(--blush-pop);
   border-style: dashed;
 }
@@ -81,7 +81,7 @@
   }
 }
 
-#play-pause-btn:active {
+.play-btn:active {
   transform: translate(1px, 1px);
 }
 
@@ -109,7 +109,7 @@
   transition: width 0.1s ease;
 }
 
-#progress-slider {
+.progress-slider {
   width: 100%;
   -webkit-appearance: none;
   appearance: none;
@@ -123,7 +123,7 @@
   opacity: 0;
 }
 
-#progress-slider::-webkit-slider-thumb {
+.progress-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 16px;
@@ -133,7 +133,7 @@
   cursor: pointer;
 }
 
-#progress-slider::-moz-range-thumb {
+.progress-slider::-moz-range-thumb {
   width: 16px;
   height: 16px;
   background: var(--graphite);
@@ -156,7 +156,7 @@
   gap: 0.5rem;
 }
 
-#volume-btn {
+.volume-btn {
   background: none;
   border: none;
   cursor: pointer;
@@ -165,11 +165,11 @@
   transition: color 0.2s ease;
 }
 
-#volume-btn:hover {
+.volume-btn:hover {
   color: var(--full-spec-blue);
 }
 
-#volume-slider {
+.volume-slider {
   width: 80px;
   -webkit-appearance: none;
   appearance: none;
@@ -180,7 +180,7 @@
   cursor: pointer;
 }
 
-#volume-slider::-webkit-slider-thumb {
+.volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 12px;
@@ -190,7 +190,7 @@
   cursor: pointer;
 }
 
-#volume-slider::-moz-range-thumb {
+.volume-slider::-moz-range-thumb {
   width: 12px;
   height: 12px;
   background: var(--graphite);

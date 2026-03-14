@@ -9,6 +9,7 @@ episodeImage:
   alt: a landscape photograph of the coast of cornwall, taken on the coast path near to Zennor, looking towards St Ives
 socialImage: /social_images/46-swipe-right.jpg
 mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
+mp3title: 'Episode 5 - Blah'
 ---
 
 ## More excuses

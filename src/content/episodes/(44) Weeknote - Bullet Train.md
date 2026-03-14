@@ -9,6 +9,7 @@ episodeImage:
   alt: a sketch image of a fast moving bullet train - lines have been added to create the sense of motion
 socialImage: /social_images/44-bullet-train.jpg
 mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
+mp3title: 'Episode 3 - You lang'
 ---
 
 ![a sketch image of a fast moving bullet train - lines have been added to create the sense of motion](episode_images/44-bullet-trainRIGHT.jpg)

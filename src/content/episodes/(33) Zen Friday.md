@@ -9,6 +9,7 @@ episodeImage:
   alt: 'a photo of concentric circles of gravel from a zen garden'
 socialImage: '/social_images/33-zen-friday.jpg'
 mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
+mp3title: 'Episode 1 - Blah blah'
 ---
 
 <iframe src="https://embed.acast.com/660872d53207c3001751e852/zen-friday?accentColor=F0F2F5&bgColor=e40404&secondaryColor=F0F2F5" frameBorder="0" width="100%" height="110px" class="audioplayer"></iframe>
