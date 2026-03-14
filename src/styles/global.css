@@ -88,6 +88,12 @@ footer {
   padding-right: 1.1rem;
 }
 
+h1,
+h2,
+h3 {
+  font-weight: 400;
+}
+
 h2 {
   margin-bottom: 0.5rem;
 }
@@ -473,6 +479,54 @@ section.episode img[src*='LEFT'] {
   border-radius: 0.3rem;
 }
 
+/* Subscribe Links Styles */
+.subscribe-links {
+  margin: 2rem 0;
+}
+
+.subscribe-platforms {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.subscribe-platforms li {
+  width: 100%;
+}
+
+.subscribe-platforms a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1rem 1rem;
+  text-decoration: none;
+  color: var(--graphite);
+  background-color: var(--green-yellow);
+  border: 2px solid var(--graphite);
+  border-radius: 0.4rem;
+  font-family: var(--Jersey15), sans-serif;
+  font-size: 1.6rem;
+  line-height: 1;
+  transition: background-color 0.2s;
+}
+
+.subscribe-platforms a:hover {
+  background-color: var(--blush-pop);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
 /*----------------------------------------------------------------------------------------------*/
 /* IMPORTANT: DESKTOP media query - switches on grid layout if page width is wider than 768px   */
 /*--------------------------------------------------------------------------------------------- */
@@ -481,11 +535,27 @@ section.episode img[src*='LEFT'] {
   /* desktop layout styles */
 
   .content-padding {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
   }
   .button-p {
     text-align: left;
+  }
+
+  /* desktop grid styles */
+
+  section.episodegrid .grid {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2rem;
+  }
+
+  section.latest .grid {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 2rem;
   }
 
   /* desktop media styles */
@@ -562,60 +632,4 @@ section.episode img[src*='LEFT'] {
     width: 350px;
     height: 102px;
   }
-
-  /* desktop grid styles */
-
-  section.episodegrid .grid {
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 2rem;
-  }
-
-  section.latest .grid {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 2rem;
-  }
-}
-
-/* Subscribe Links Styles */
-.subscribe-links {
-  margin: 2rem 0;
-}
-
-.subscribe-platforms {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.subscribe-platforms li {
-  /* No flex properties needed for vertical centering */
-}
-
-.subscribe-platforms a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  text-decoration: none;
-  color: inherit;
-  transition: background-color 0.2s;
-}
-
-.subscribe-platforms a:hover {
-  background-color: #f0f0f0;
-}
-
-.icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
 }

@@ -16,6 +16,24 @@
   margin-bottom: 0.75rem;
 }
 
+.player-content-grid {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 767px) {
+  .player-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.player-content-grid .audio-info {
+  margin-bottom: 0;
+}
+
 .track-title {
   font-size: 0.95rem;
   font-weight: 700;
@@ -217,6 +235,12 @@
   margin: 2rem 0;
 }
 
+.latest-episode-player > h2 {
+  font-family: var(--Jersey15), sans-serif;
+  font-size: 2.3rem;
+  margin-bottom: 0;
+}
+
 .episode-grid {
   display: grid;
   gap: 2rem;
@@ -226,7 +250,7 @@
 /* Desktop: 1 row, 2 columns */
 @media (min-width: 768px) {
   .episode-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 60% 40%;
   }
 }
 
@@ -242,7 +266,11 @@
 }
 
 .episode-info-section {
-  /* Text content container */
+  margin-top: 1rem;
+}
+
+.latest-episode-player .episode-info-section .subscribe-links {
+  margin-top: 0;
 }
 
 .episode-date {
@@ -263,8 +291,13 @@
   min-height: 0; /* Allow flex item to shrink */
 }
 
-.episode-image {
+.player-content-grid .episode-image-placeholder {
+  margin: 0;
+}
+
+.latest-episode-player .player-content-grid .episode-image {
   width: 100%;
+  max-width: 100%;
   height: auto;
   border-radius: 8px;
 }

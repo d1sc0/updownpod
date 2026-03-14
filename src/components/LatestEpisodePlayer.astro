@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import SubscribeLinks from './SubscribeLinks.astro';
-import '../styles/audio-player.css';
 const allEpisodes = await getCollection('episodes', ({ data }) => {
   return import.meta.env.PROD ? data.draft !== true : true;
 });
@@ -37,14 +36,26 @@ const uniqueId = `audio-player-${Math.random().toString(36).substr(2, 9)}`;
               <source src={latestEpisode.data.mp3} type="audio/mpeg" />
               Your browser does not support the audio element.
             </audio>
-            <div class="episode-image-placeholder">
-              <Image
-                src={latestEpisode.data.socialImage}
-                alt="Episode cover"
-                width={400}
-                height={400}
-                class="episode-image"
-              />
+            <div class="player-content-grid">
+              <div class="episode-image-placeholder">
+                <Image
+                  src={latestEpisode.data.socialImage}
+                  alt="Episode cover"
+                  width={400}
+                  height={400}
+                  class="episode-image"
+                />
+              </div>
+              <div class="audio-info">
+                <h3>{latestEpisode.data.title}</h3>
+                <p class="episode-date">{formattedPublishDate}</p>
+                <p class="episode-excerpt">{latestEpisode.data.description}</p>
+                <p>
+                  <a href={`/episodes/${latestEpisode.slug}`}>
+                    read show notes...
+                  </a>
+                </p>
+              </div>
             </div>
             <div class="audio-controls">
               <button
@@ -118,15 +129,6 @@ const uniqueId = `audio-player-${Math.random().toString(36).substr(2, 9)}`;
           </div>
         </div>
         <div class="episode-info-section">
-          <h3>{latestEpisode.data.title}</h3>
-          <p class="episode-date">{formattedPublishDate}</p>
-          <p class="episode-excerpt">{latestEpisode.data.description}</p>
-          <button
-            class="full-episode-btn"
-            onclick="window.location.href='/episodes/{latestEpisode.slug}'"
-          >
-            Listen to full episode
-          </button>
           <SubscribeLinks />
         </div>
       </div>
