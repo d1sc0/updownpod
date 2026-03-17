@@ -3,9 +3,9 @@
   "type": "module",
   "version": "1.0.2",
   "scripts": {
+    "predev": "npm run convert:social:1200",
     "dev": "astro dev",
     "start": "astro dev",
-    "prebuild": "npm run convert:social:1200",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
