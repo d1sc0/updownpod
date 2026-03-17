@@ -256,6 +256,11 @@
   border-radius: 8px;
 }
 
+section.episodegrid article .player-content-grid .episode-image,
+section.latest-episode-player .player-content-grid .episode-image {
+  border: 2px dashed var(--graphite);
+}
+
 #audio-element {
   display: none;
 }

@@ -9,10 +9,10 @@ const episodesCollection = defineCollection({
       title: z.string(),
       pubDate: z.date(),
       description: z.string(),
-      episodeImage: z.object({
+      /*     episodeImage: z.object({
         src: image(),
         alt: z.string(),
-      }),
+      }), */
       socialImage: z.string().optional(),
       mp3: z.string().url().optional(),
       mp3title: z.string().optional(),

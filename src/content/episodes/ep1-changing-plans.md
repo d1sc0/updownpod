@@ -1,15 +1,12 @@
 ---
-title: Changing Plans
+title: 'Changing Plans'
 draft: false
-slug: changing-plans
+slug: ep1-changing-plans
 pubDate: 2025-08-03
-description: posting about updated plans for my Birthday at the end of the month. A boy just wants to have fun, and this is how I intend to celebrate this year.
-episodeImage:
-  src: episode_images/49-new-plansFULL.jpg
-  alt: a kitchen selfie with me giving peace fingers wearing my lovely orange vaga hat
-socialImage: /social_images/49-new-plans.jpg
+description: A birthday challenge gets reworked in public after some honest reflection. Instead of a punishing solo distance walk, this episode outlines a more social plan with running, coffee, a coastal hike, and late-night dancing with friends.
+socialImage: /social_images/episode1.svg
 mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
-mp3title: 'Episode 8 - No Minister'
+mp3title: 'Episode 1 - Changing Plans'
 ---
 
 Okay, so I [previously episodeed](https://hellostu.xyz/episodes/46-before-46/) about challenging myself to a 46km walk at the end of August for my Birthday, and a few lovely folks showed an interest in tagging along. Thank you! I now need to let you all know that I've changed my mind and decided against it. Sorry!
@@ -36,4 +33,4 @@ Friends and internet stalkers are welcome to join for any of these activities. A
 
 **No regrets. Simples.** ✌️
 
-![a kitchen selfie with me giving peace fingers wearing my lovely orange vaga hat](episode_images/49-new-plansFULL.jpg)
+![a kitchen selfie with me giving peace fingers wearing my lovely orange vaga hat](episode_images/new-plansFULL.jpg)

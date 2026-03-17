@@ -11,7 +11,7 @@ export async function getStaticPaths({ paginate }) {
   });
   episodes.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-  return paginate(episodes, { pageSize: 9 });
+  return paginate(episodes, { pageSize: 5 });
 }
 
 // All paginated data is passed on the "page" prop

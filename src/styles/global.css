@@ -245,7 +245,7 @@ section article img {
 }
 
 section.episodegrid .grid article {
-  background-color: var(--blush-pop);
+  background-color: var(--white);
 }
 
 section.episodegrid article {
@@ -569,8 +569,15 @@ section.episode img[src*='LEFT'] {
   section.episodegrid .grid {
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap: 2rem;
+  }
+
+  section.episodegrid .player-content-grid {
+    grid-template-columns: 15% 85%;
+  }
+  section.episodegrid .player-content-grid p {
+    margin-right: 1rem;
   }
 
   /* desktop media styles */

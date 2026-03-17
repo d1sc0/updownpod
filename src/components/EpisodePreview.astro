@@ -1,6 +1,5 @@
 ---
 const { data, url } = Astro.props;
-import { Image } from 'astro:assets';
 const dateOptions: object = {
   year: 'numeric',
   month: 'long',
@@ -14,43 +13,45 @@ const formattedPublishDate = new Date(data.pubDate).toLocaleDateString(
 const uniqueId = `audio-player-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
-<article>
-  <Image
-    src={data.episodeImage.src}
-    alt={data.episodeImage.alt}
-    width="200"
-    height="200"
-    quality="high"
-  />
-  <a href={url}><h3>{data.title}</h3></a>
-  <p>{formattedPublishDate}</p>
-  <p>{data.description}</p>
-  <div class="custom-audio-player" data-player-id={uniqueId}>
-    <audio id={`audio-element-${uniqueId}`} preload="metadata">
-      <source src={data.mp3} type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-    <div class="audio-info">
-      <div id={`track-title-${uniqueId}`} class="track-title">
-        {data.mp3title}
-      </div>
+<article class="custom-audio-player" data-player-id={uniqueId}>
+  <audio id={`audio-element-${uniqueId}`} preload="metadata">
+    <source src={data.mp3} type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+  <div class="player-content-grid">
+    <div class="episode-image-placeholder">
+      <img
+        src={data.socialImage}
+        alt="Episode cover"
+        width={400}
+        height={400}
+        class="episode-image"
+      />
     </div>
-    <div class="audio-controls">
-      <button
-        id={`play-pause-btn-${uniqueId}`}
-        class="play-btn"
-        aria-label="Play"
+    <div class="audio-info">
+      <h3><a href={url}>{data.title}</a></h3>
+      <p class="episode-date">{formattedPublishDate}</p>
+      <p class="episode-excerpt">{data.description}</p>
+      <p><a href={url}>read show notes...</a></p>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <button
+      id={`play-pause-btn-${uniqueId}`}
+      class="play-btn"
+      aria-label="Play"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M8 5v14l11-7z" fill="currentColor"></path>
-        </svg>
-      </button>
+        <path d="M8 5v14l11-7z" fill="currentColor"></path>
+      </svg>
+    </button>
+    <div class="progress-time-container">
       <div class="progress-container">
         <div class="progress-bar">
           <div class="progress-fill" id={`progress-fill-${uniqueId}`}></div>
@@ -66,38 +67,37 @@ const uniqueId = `audio-player-${Math.random().toString(36).substr(2, 9)}`;
         />
       </div>
       <div class="time-display">
-        <span id={`current-time-${uniqueId}`}>0:00</span> / <span
-          id={`duration-${uniqueId}`}>0:00</span
-        >
+        <span id={`current-time-${uniqueId}`}>0:00</span> /{' '}
+        <span id={`duration-${uniqueId}`}>0:00</span>
       </div>
-      <div class="volume-container">
-        <button
-          id={`volume-btn-${uniqueId}`}
-          class="volume-btn"
-          aria-label="Volume"
+    </div>
+    <div class="volume-container">
+      <button
+        id={`volume-btn-${uniqueId}`}
+        class="volume-btn"
+        aria-label="Volume"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
-              fill="currentColor"></path>
-          </svg>
-        </button>
-        <input
-          type="range"
-          id={`volume-slider-${uniqueId}`}
-          class="volume-slider"
-          min="0"
-          max="1"
-          value="1"
-          step="0.01"
-        />
-      </div>
+          <path
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+            fill="currentColor"></path>
+        </svg>
+      </button>
+      <input
+        type="range"
+        id={`volume-slider-${uniqueId}`}
+        class="volume-slider"
+        min="0"
+        max="1"
+        value="1"
+        step="0.01"
+      />
     </div>
   </div>
 </article>

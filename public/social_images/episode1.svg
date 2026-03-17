@@ -1,0 +1,66 @@
+<svg width="1500" height="1500" viewBox="0 0 1500 1500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Podcast episode cover art">
+  <defs>
+    <style>
+      .graphite { fill: #2b2b2b; }
+      .cream { fill: #fffccc; }
+      .green { fill: #a1fe4f; }
+      .blush { fill: #ffb2e6; }
+      .blue { fill: #015eff; }
+      .white { fill: #ffffff; }
+      .stroke-graphite { stroke: #2b2b2b; stroke-width: 10; }
+      .title {
+        font-family: "Jersey 15", "Bungee", "Impact", "Arial Black", sans-serif;
+        font-weight: 400;
+        letter-spacing: 1px;
+      }
+      .sans {
+        font-family: "Helvetica Neue", "Avenir Next", "Segoe UI", sans-serif;
+      }
+    </style>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#b1e9ff" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect x="0" y="0" width="1500" height="1500" class="cream"/>
+  <rect x="0" y="0" width="1500" height="1500" fill="url(#grid)" opacity="0.55"/>
+
+  <circle cx="1320" cy="230" r="120" class="blue" opacity="0.9"/>
+  <circle cx="210" cy="1280" r="140" class="green" opacity="0.85"/>
+  <rect x="1040" y="1160" width="280" height="180" rx="28" class="blush" transform="rotate(-8 1180 1250)"/>
+
+  <rect x="140" y="180" width="1220" height="1140" rx="22" class="graphite"/>
+  <rect x="122" y="162" width="1220" height="1140" rx="22" class="blush stroke-graphite"/>
+
+  <rect x="180" y="230" width="1104" height="140" rx="16" class="green stroke-graphite"/>
+  <text x="732" y="318" text-anchor="middle" class="title graphite" font-size="86">
+    UPSTAIRS / DOWNSTAIRS
+  </text>
+
+  <!-- moved up to tighten spacing under header -->
+  <g transform="translate(530 390)">
+    <rect x="0" y="45" width="20" height="35" class="graphite"/>
+    <rect x="35" y="25" width="20" height="75" class="graphite"/>
+    <rect x="70" y="5" width="20" height="115" class="graphite"/>
+    <rect x="105" y="30" width="20" height="65" class="graphite"/>
+    <rect x="140" y="0" width="20" height="125" class="graphite"/>
+    <rect x="175" y="20" width="20" height="85" class="graphite"/>
+    <rect x="210" y="50" width="20" height="25" class="graphite"/>
+    <rect x="245" y="18" width="20" height="89" class="graphite"/>
+    <rect x="280" y="0" width="20" height="125" class="graphite"/>
+    <rect x="315" y="28" width="20" height="69" class="graphite"/>
+    <rect x="350" y="7" width="20" height="111" class="graphite"/>
+    <rect x="385" y="35" width="20" height="55" class="graphite"/>
+  </g>
+
+  <!-- moved up to keep rhythm after removing badge -->
+  <rect x="180" y="540" width="1104" height="520" rx="18" class="white stroke-graphite"/>
+  <text x="230" y="680" class="title blue" font-size="96">EPISODE 1:</text>
+  <text x="230" y="820" class="title blue" font-size="170">CHANGING PLANS</text>
+  <!-- <text x="230" y="955" class="title graphite" font-size="130">HOME</text> -->
+
+  <rect x="180" y="1120" width="1104" height="110" rx="14" class="white stroke-graphite"/>
+  <text x="732" y="1192" text-anchor="middle" class="sans graphite" font-size="42" font-weight="800">
+    UPDOWNPOD.COM
+  </text>
+</svg>
