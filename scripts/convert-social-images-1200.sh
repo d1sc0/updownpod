@@ -21,12 +21,11 @@ while IFS= read -r -d '' svg_file; do
   base_name="$(basename "$svg_file" .svg)"
   output_file="$OUT_DIR/${base_name}.png"
 
-  # Convert SVG to PNG and force exact 1200x1200 output dimensions.
-  sips -s format png "$svg_file" --out "$output_file" >/dev/null
-  sips -z 1200 1200 "$output_file" >/dev/null
+  # Convert SVG to PNG and set width to 1200px while preserving aspect ratio.
+  sips -s format png "$svg_file" --resampleWidth 1200 --out "$output_file" >/dev/null
 
   echo "Created: $output_file"
   count=$((count + 1))
 done < <(find "$SRC_DIR" -maxdepth 1 -type f -name '*.svg' -print0 | sort -z)
 
-echo "Done. Converted $count SVG file(s) to 1200x1200 PNG in '$OUT_DIR'."
+echo "Done. Converted $count SVG file(s) to 1200px-wide PNG in '$OUT_DIR'."
