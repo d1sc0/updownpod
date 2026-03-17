@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Upstairs Downstairs Podcast social image">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffccc"/>
+      <stop offset="100%" stop-color="#f8f1b4"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e9dd86" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.45"/>
+
+  <rect x="36" y="36" width="1128" height="558" rx="28" fill="none" stroke="#2b2b2b" stroke-width="6"/>
+
+  <path d="M90 300 l80 -80 l80 80" fill="none" stroke="#2b2b2b" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M950 330 l80 80 l80 -80" fill="none" stroke="#2b2b2b" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="170" cy="180" r="24" fill="#a1fe4f"/>
+  <circle cx="1030" cy="450" r="24" fill="#ffb2e6"/>
+
+  <text x="600" y="145" text-anchor="middle" font-family="Trebuchet MS, Arial, sans-serif" font-size="50" letter-spacing="5" fill="#2b2b2b">UPSTAIRS / DOWNSTAIRS</text>
+  <text x="600" y="528" text-anchor="middle" font-family="Trebuchet MS, Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="2" fill="#2b2b2b">PODCAST</text>
+</svg>
