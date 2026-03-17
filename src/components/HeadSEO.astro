@@ -27,7 +27,10 @@ const socialImage1200 = frontmatter?.socialImage
       : pageMeta.description}
     openGraph={{
       basic: {
-        title: pageMeta != undefined ? pageMeta.title : frontmatter.title,
+        title:
+          pageMeta != undefined
+            ? pageMeta.title
+            : 'Upstairs Downstairs Podcast | ' + frontmatter.title,
         type: frontmatter !== undefined ? 'article' : 'website',
         image:
           frontmatter !== undefined
