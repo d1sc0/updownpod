@@ -3,6 +3,11 @@ import { SEO } from 'astro-seo';
 const { frontmatter, pageMeta } = Astro.props;
 import Fonts from '../components/Fonts.astro';
 const siteURL = 'https://updownpod-79a0d.web.app/';
+const socialImage1200 = frontmatter?.socialImage
+  ? frontmatter.socialImage
+      .replace('social_images/', 'social_images_1200/')
+      .replace(/\.svg$/i, '.png')
+  : undefined;
 ---
 
 <head>
@@ -26,7 +31,7 @@ const siteURL = 'https://updownpod-79a0d.web.app/';
         type: frontmatter !== undefined ? 'article' : 'website',
         image:
           frontmatter !== undefined
-            ? siteURL + frontmatter.socialImage
+            ? siteURL + socialImage1200
             : siteURL + pageMeta.imageUrl,
       },
       optional: {
@@ -43,7 +48,7 @@ const siteURL = 'https://updownpod-79a0d.web.app/';
       title: pageMeta != undefined ? pageMeta.title : frontmatter.title,
       image:
         frontmatter !== undefined
-          ? siteURL + frontmatter.socialImage
+          ? siteURL + socialImage1200
           : siteURL + pageMeta.imageUrl,
       description:
         frontmatter !== undefined

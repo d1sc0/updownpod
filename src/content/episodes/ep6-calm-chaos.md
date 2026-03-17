@@ -5,7 +5,7 @@ slug: ep6-calm-chaos
 pubDate: 2025-08-08
 description: Meetings, errands, and admin stack up fast, but the day stays manageable through practical systems. By batching context switches, reducing active priorities, and relying on one central checklist, the episode demonstrates how calm structure can absorb chaos.
 socialImage: /social_images/episode6.svg
-mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
+mp3: 'https://archive.org/download/thebluewound_2602_librivox/bluewound_05_garrett.mp3'
 mp3title: 'Episode 6 - Calm Chaos'
 ---
 

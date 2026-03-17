@@ -5,7 +5,7 @@ slug: ep7-coffee-mile
 pubDate: 2025-08-09
 description: 'A tiny ritual becomes the anchor for a noisy morning: one easy mile, one good coffee, and one page of notes. This episode explores how lightweight routines can improve clarity, reduce friction, and provside momentum without over-engineering your day.'
 socialImage: /social_images/episode7.svg
-mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
+mp3: 'https://archive.org/download/thebluewound_2602_librivox/bluewound_06_garrett.mp3'
 mp3title: 'Episode 7 - Coffee Mile'
 ---
 

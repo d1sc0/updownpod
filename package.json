@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "prebuild": "npm run convert:social:1200",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "convert:social:1200": "bash scripts/convert-social-images-1200.sh"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",

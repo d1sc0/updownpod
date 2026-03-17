@@ -5,7 +5,7 @@ slug: ep10-slow-saturday
 pubDate: 2025-08-12
 description: A low-pressure Saturday of easy movement, good food, and time with friends becomes a reminder that recovery is strategic, not optional. The episode explores how slower days refill attention, improve mood, and support better work when the week restarts.
 socialImage: /social_images/episode10.svg
-mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
+mp3: 'https://archive.org/download/thebluewound_2602_librivox/bluewound_09_garrett.mp3'
 mp3title: 'Episode 10 - Slow Saturday'
 ---
 

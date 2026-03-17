@@ -5,7 +5,7 @@ slug: ep2-quick-reset
 pubDate: 2025-08-04
 description: A deliberate reset day built around simple habits that lower noise and restore direction. A long walk, a coffee-and-notebook planning session, and one clear focus list help transform scattered energy into practical momentum for the week ahead.
 socialImage: /social_images/episode2.svg
-mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
+mp3: 'https://archive.org/download/thebluewound_2602_librivox/bluewound_01_garrett.mp3'
 mp3title: 'Episode 2 - Quick Reset'
 ---
 
