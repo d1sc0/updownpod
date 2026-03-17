@@ -3,7 +3,7 @@ title: 'Changing Plans'
 draft: false
 slug: ep1-changing-plans
 pubDate: 2025-08-03
-description: A birthday challenge gets reworked in public after some honest reflection. Instead of a punishing solo distance walk, this episode outlines a more social plan with running, coffee, a coastal hike, and late-night dancing with friends.
+description: 'A birthday challenge gets reworked in public after some honest reflection. Instead of a punishing solo distance walk, this episode outlines a more social plan with running, coffee, a coastal hike, and late-night dancing with friends.'
 socialImage: /social_images/episode1.svg
 mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
 mp3title: 'Episode 1 - Changing Plans'

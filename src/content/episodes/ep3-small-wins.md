@@ -3,7 +3,7 @@ title: 'Small Wins'
 draft: false
 slug: ep3-small-wins
 pubDate: 2025-08-05
-description: This episode leans into the power of small wins. Clearing minor tasks, replying to pending messages, and tightening weekly plans creates visible momentum. The takeaway is simple: consistency compounds, especially when life is busy and attention is fragmented.
+description: 'This episode leans into the power of small wins. Clearing minor tasks, replying to pending messages, and tightening weekly plans creates visible momentum. The takeaway is simple: consistency compounds, especially when life is busy and attention is fragmented.'
 socialImage: /social_images/episode3.svg
 mp3: 'https://open.acast.com/public/streams/660872d53207c3001751e852/episodes/660872da3207c3001751e8fe.mp3'
 mp3title: 'Episode 3 - Small Wins'
