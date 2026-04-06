@@ -71,9 +71,11 @@ app.get(['/callback', '/api-auth/callback'], async (req, res) => {
     const jwtToken = jwt.sign({ access_token }, jwt_secret, {
       expiresIn: '1h',
     });
-    // Redirect back to Decap CMS with the token in the URL fragment
-    const site = req.query?.site_id || '';
-    const redirectUrl = `${site || '/admin'}/#/auth/callback?token=${jwtToken}`;
+      // Always redirect to /admin/index.html on the site
+      let site = req.query?.site_id || '';
+      if (site.endsWith('/')) site = site.slice(0, -1);
+      if (!site) site = 'https://updownpod-79a0d.web.app';
+      const redirectUrl = `${site}/admin/index.html#/auth/callback?token=${jwtToken}`;
     res.redirect(redirectUrl);
   } catch (error) {
     console.error(
