@@ -1,1 +1,1 @@
-exports['api-auth'] = require('./api/auth');
+exports['auth'] = require('./api/auth');
