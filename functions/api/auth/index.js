@@ -15,6 +15,12 @@ const runtimeConfig = defineJsonSecret('RUNTIME_CONFIG');
 // Helper to get config values
 function getConfig() {
   const config = runtimeConfig.value();
+  if (!config || !config.decap) {
+    throw new Error(
+      'RUNTIME_CONFIG secret is missing or missing the "decap" key',
+    );
+  }
+  return config.decap;
 }
 
 // Exchange code for access token
