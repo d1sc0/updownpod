@@ -9,6 +9,27 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Start GitHub OAuth flow for Decap CMS (GET /api/auth)
+app.get(['/', '/api-auth', '/api/auth'], (req, res) => {
+  try {
+    const { github_client_id } = getConfig();
+    const redirect_uri = `${req.protocol}://${req.get('host')}/api/auth/callback`;
+    const site_id = req.query.site_id || '';
+    const scope = req.query.scope || 'repo';
+    const state = Math.random().toString(36).substring(2); // Optional: add state for CSRF protection
+    const githubAuthUrl =
+      `https://github.com/login/oauth/authorize?` +
+      `client_id=${encodeURIComponent(github_client_id)}` +
+      `&redirect_uri=${encodeURIComponent(redirect_uri)}` +
+      `&scope=${encodeURIComponent(scope)}` +
+      (site_id ? `&site_id=${encodeURIComponent(site_id)}` : '') +
+      `&state=${state}`;
+    res.redirect(githubAuthUrl);
+  } catch (error) {
+    res.status(500).send('OAuth setup error: ' + error.message);
+  }
+});
+
 // Use RUNTIME_CONFIG secret
 const runtimeConfig = defineJsonSecret('RUNTIME_CONFIG');
 
