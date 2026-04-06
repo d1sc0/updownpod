@@ -1,0 +1,41 @@
+backend:
+  name: github
+  repo: d1sc0/updownpod
+  branch: main
+  auth_scope: 'repo'
+  base_url: 'https://updownpod-79a0d.web.app'
+  auth_endpoint: '/api/auth'
+  app_id: Ov23lik21HAoD1jvg2Ns
+  # You may need to set up a GitHub OAuth app for production use
+
+media_folder: 'public/social_images'
+public_folder: '/social_images'
+
+collections:
+  - name: 'episodes'
+    label: 'Episodes'
+    folder: 'src/content/episodes'
+    create: true
+    slug: '{{slug}}'
+    extension: 'md'
+    format: 'frontmatter'
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Draft', name: 'draft', widget: 'boolean', required: false }
+      - { label: 'Slug', name: 'slug', widget: 'string' }
+      - { label: 'Publish Date', name: 'pubDate', widget: 'datetime' }
+      - { label: 'Description', name: 'description', widget: 'text' }
+      - {
+          label: 'Social Image',
+          name: 'socialImage',
+          widget: 'image',
+          required: false,
+        }
+      - { label: 'MP3 URL', name: 'mp3', widget: 'string', required: false }
+      - {
+          label: 'MP3 Title',
+          name: 'mp3title',
+          widget: 'string',
+          required: false,
+        }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
