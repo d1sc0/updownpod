@@ -23,7 +23,7 @@ function getConfig() {
   return config.decap;
 }
 
-// Exchange code for access token
+// Exchange code for access token (POST for Decap, GET for OAuth callback)
 app.post(['/token', '/api-auth/token'], async (req, res) => {
   const code = req.body?.code || req.query?.code;
   if (!code) return res.status(400).json({ error: 'Missing code' });
@@ -48,6 +48,39 @@ app.post(['/token', '/api-auth/token'], async (req, res) => {
   } catch (error) {
     console.error('Auth Error:', error.response?.data || error.message);
     res.status(error.response?.status || 500).json({ error: error.message });
+  }
+});
+
+// Handle OAuth callback for Decap CMS (GET /callback)
+app.get(['/callback', '/api-auth/callback'], async (req, res) => {
+  const code = req.query?.code;
+  if (!code) return res.status(400).send('Missing code');
+  try {
+    const { github_client_id, github_client_secret, jwt_secret } = getConfig();
+    const tokenRes = await axios.post(
+      'https://github.com/login/oauth/access_token',
+      {
+        client_id: github_client_id,
+        client_secret: github_client_secret,
+        code,
+      },
+      { headers: { Accept: 'application/json' } },
+    );
+    const access_token = tokenRes.data.access_token;
+    if (!access_token) throw new Error('No access token');
+    const jwtToken = jwt.sign({ access_token }, jwt_secret, {
+      expiresIn: '1h',
+    });
+    // Redirect back to Decap CMS with the token in the URL fragment
+    const site = req.query?.site_id || '';
+    const redirectUrl = `${site || '/admin'}/#/auth/callback?token=${jwtToken}`;
+    res.redirect(redirectUrl);
+  } catch (error) {
+    console.error(
+      'OAuth Callback Error:',
+      error.response?.data || error.message,
+    );
+    res.status(error.response?.status || 500).send(error.message);
   }
 });
 
