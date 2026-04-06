@@ -4,6 +4,7 @@
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       { "source": "/api/auth/**", "function": "auth" },
+      { "source": "/api/auth", "function": "auth" },
       { "source": "**", "destination": "/index.html" }
     ]
   },
