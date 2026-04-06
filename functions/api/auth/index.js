@@ -108,7 +108,9 @@ app.get(['/callback', '/api-auth/callback'], async (req, res) => {
   }
 });
 
-// Proxy GitHub API requests
+// ...existing code...
+
+// Proxy GitHub API requests (must be last)
 app.all('/*', async (req, res) => {
   const auth = req.headers.authorization;
   if (!auth) return res.status(401).json({ error: 'Missing auth' });
