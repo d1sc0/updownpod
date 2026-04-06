@@ -12,8 +12,8 @@ app.use(express.json());
 // Start GitHub OAuth flow for Decap CMS (GET /api/auth)
 app.get(['/', '/api-auth', '/api/auth'], (req, res) => {
   try {
-    const { github_client_id } = getConfig();
-    const redirect_uri = `${req.protocol}://${req.get('host')}/api/auth/callback`;
+    const { github_client_id, base_url } = getConfig();
+    const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
     const site_id = req.query.site_id || '';
     const scope = req.query.scope || 'repo';
     const state = Math.random().toString(36).substring(2); // Optional: add state for CSRF protection
