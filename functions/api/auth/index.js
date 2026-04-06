@@ -93,9 +93,9 @@ app.get(['/callback', '/api-auth/callback'], async (req, res) => {
       expiresIn: '1h',
     });
     // Always redirect to /admin/index.html on the site
-    let site = req.query?.site_id || '';
+    const { base_url } = getConfig();
+    let site = base_url;
     if (site.endsWith('/')) site = site.slice(0, -1);
-    if (!site) site = 'https://updownpod-79a0d.web.app';
     const redirectUrl = `${site}/admin/index.html#/auth/callback?token=${jwtToken}`;
     res.redirect(redirectUrl);
   } catch (error) {
