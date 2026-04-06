@@ -74,6 +74,7 @@ app.post(['/token', '/api-auth/token'], async (req, res) => {
 
 // Handle OAuth callback for Decap CMS (GET /callback)
 app.get(['/callback', '/api-auth/callback'], async (req, res) => {
+  console.log('--- /api/auth/callback HIT ---', { query: req.query });
   const code = req.query?.code;
   if (!code) return res.status(400).send('Missing code');
   try {
