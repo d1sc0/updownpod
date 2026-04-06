@@ -7,19 +7,21 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 // Use RUNTIME_CONFIG secret
 const runtimeConfig = defineJsonSecret('RUNTIME_CONFIG');
 
 // Helper to get config values
 function getConfig() {
-  return runtimeConfig.value().decap;
+  const config = runtimeConfig.value();
 }
 
 // Exchange code for access token
-app.post('/token', async (req, res) => {
-  const code = req.query.code;
+app.post(['/token', '/api-auth/token'], async (req, res) => {
+  const code = req.body?.code || req.query?.code;
   if (!code) return res.status(400).json({ error: 'Missing code' });
+
   try {
     const { github_client_id, github_client_secret, jwt_secret } = getConfig();
     const tokenRes = await axios.post(
@@ -37,13 +39,14 @@ app.post('/token', async (req, res) => {
       expiresIn: '1h',
     });
     res.json({ token: jwtToken });
-  } catch (e) {
-    res.status(500).json({ error: e.message });
+  } catch (error) {
+    console.error('Auth Error:', error.response?.data || error.message);
+    res.status(error.response?.status || 500).json({ error: error.message });
   }
 });
 
 // Proxy GitHub API requests
-app.use('/', async (req, res) => {
+app.all('/*', async (req, res) => {
   const auth = req.headers.authorization;
   if (!auth) return res.status(401).json({ error: 'Missing auth' });
   try {
@@ -52,19 +55,26 @@ app.use('/', async (req, res) => {
       auth.replace('Bearer ', ''),
       jwt_secret,
     );
+
+    // Strip function name prefix if present (e.g., /api-auth/user -> /user)
+    const cleanPath = req.url.replace(/^\/api-auth/, '');
+
     const githubRes = await axios({
       method: req.method,
-      url: `https://api.github.com${req.url}`,
+      url: `https://api.github.com${cleanPath}`,
       headers: {
         Authorization: `token ${access_token}`,
         Accept: 'application/vnd.github.v3+json',
       },
-      data: req.body,
+      data: ['GET', 'DELETE', 'HEAD'].includes(req.method)
+        ? undefined
+        : req.body,
     });
     res.status(githubRes.status).json(githubRes.data);
-  } catch (e) {
-    res.status(500).json({ error: e.message });
+  } catch (error) {
+    console.error('Proxy Error:', error.response?.data || error.message);
+    res.status(error.response?.status || 500).json({ error: error.message });
   }
 });
 
-exports['api-auth'] = onRequest({ secrets: [runtimeConfig] }, app);
+module.exports = onRequest({ secrets: [runtimeConfig] }, app);
