@@ -6,41 +6,51 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
  <meta name="robots" content="noindex" />
  <title>Content Manager</title>
- <!-- Include js-yaml in the head to ensure it is available for initialization -->
+ <script>
+  // This MUST be set before the Decap CMS script loads to prevent auto-initialization
+  window.CMS_MANUAL_INIT = true;
+ </script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 </head>
 
 <body>
  <div id="nc-root"></div>
+ <script src="https://unpkg.com/decap-cms@^3.10.12/dist/decap-cms.js"></script>
  <script>
-  window.CMS_MANUAL_INIT = true;
- </script>
- <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
- <script>
-  (async function () {
+  async function initCMS() {
    try {
-    // 1. Fetch the config manually
-    const response = await fetch('/admin/config.yml');
-    const configText = await response.text();
+    // Guard against double initialization
+    if (window.CMS_HAS_INITIALIZED) return;
 
-    // 2. Add debug listener
+    // 1. Fetch and parse config
+    const response = await fetch('config.yml');
+    if (!response.ok) throw new Error('config.yml not found at /admin/config.yml');
+    const configText = await response.text();
+    const config = jsyaml.load(configText);
+
+    if (typeof config !== 'object' || !config.collections) {
+     throw new Error('Parsed config is invalid or empty. Check config.yml content.');
+    }
+
+    // 2. Add debug listener for the OAuth handshake
     window.addEventListener('message', (e) => {
      if (typeof e.data === 'string' && e.data.startsWith('authorization:github:success:')) {
-      console.log('ADMIN_DEBUG: Received Auth Message:', e.data);
+      console.log('ADMIN_DEBUG: OAuth handshake message received');
      }
     }, false);
 
-    // 3. Initialize CMS with the explicit config object
-    if (window.CMS && window.jsyaml) {
-     window.CMS.init({
-      config: window.jsyaml.load(configText)
-     });
-     console.log('ADMIN_DEBUG: CMS Initialized with explicit config');
+    // 3. Manually Initialize
+    if (window.CMS) {
+     window.CMS_HAS_INITIALIZED = true;
+     window.CMS.init({ config });
+     console.log('ADMIN_DEBUG: CMS Initialized with manual configuration');
     }
    } catch (err) {
-    console.error('ADMIN_DEBUG: Error loading or parsing config:', err);
+    console.error('ADMIN_DEBUG Error:', err.message);
    }
-  })();
+  }
+
+  initCMS();
  </script>
 </body>
 
