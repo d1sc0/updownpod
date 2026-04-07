@@ -2,7 +2,7 @@ backend:
   name: github
   repo: d1sc0/updownpod
   branch: main
-  auth_scope: 'repo'
+  scope: 'repo'
   base_url: 'https://updownpod-79a0d.web.app'
   auth_endpoint: '/api/auth'
 
