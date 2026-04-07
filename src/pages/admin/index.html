@@ -13,6 +13,11 @@
  <script>
   window.CMS_MANUAL_INIT = true;
  </script>
+ <script>
+  window.addEventListener('message', (e) => {
+   console.log('ADMIN_DEBUG: Received message from', e.origin, 'Payload:', e.data);
+  }, false);
+ </script>
  <div id="nc-root"></div>
  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
  <script>
