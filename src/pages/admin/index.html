@@ -18,16 +18,16 @@
  <script>
   (async function () {
    try {
-    // 1. Fetch config first
+    // 1. Fetch and parse config before loading the CMS
     const response = await fetch('/admin/config.yml');
-    if (!response.ok) throw new Error(`config.yml not found: ${response.status}`);
+    if (!response.ok) throw new Error('config.yml not found');
     const configText = await response.text();
-
-    // 2. Parse the config object
     const config = jsyaml.load(configText);
-    window.CMS_CONFIG = config; // Keep as global fallback
 
-    // 3. Setup handshake listener
+    // 2. Set global config fallback
+    window.CMS_CONFIG = config;
+
+    // 3. Setup handshake listener for debugging
     window.addEventListener('message', (e) => {
      if (typeof e.data === 'string' && e.data.startsWith('authorization:github:success:')) {
       console.log('ADMIN_DEBUG: Handshake received');
@@ -38,20 +38,30 @@
     const script = document.createElement('script');
     script.src = "https://unpkg.com/decap-cms@^3.10.12/dist/decap-cms.js";
     script.onload = () => {
-     // If we set window.CMS_CONFIG, we call init() without arguments
-     // to trigger the manual start using that global object.
-     if (window.CMS && !window.CMS_INITIALIZED) {
-      window.CMS_INITIALIZED = true;
+     if (window.CMS) {
       window.CMS.init({ config });
       console.log('ADMIN_DEBUG: CMS Initialized');
      }
     };
     document.body.appendChild(script);
    } catch (err) {
-    console.error('ADMIN_DEBUG Init Error:', err.message);
+    console.error('ADMIN_DEBUG Error:', err.message);
    }
   })();
  </script>
+</body>
+
+</html>
+console.log('ADMIN_DEBUG: CMS Initialized');
+}
+};
+document.body.appendChild(script);
+} catch (err) {
+console.error('ADMIN_DEBUG Init Error:', err.message);
+console.error('ADMIN_DEBUG Error:', err.message);
+}
+})();
+</script>
 </body>
 
 </html>
