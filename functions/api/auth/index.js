@@ -32,9 +32,9 @@ app.get(['/api/auth', '/api-auth', '/'], (req, res) => {
     const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
     const site_id = req.query.site_id || '';
     const scope = req.query.scope || 'repo';
-    const state = req.query.state;
+    const state = req.query.state || '';
 
-    console.log('--- OAuth Step 1: Redirecting to GitHub ---', {
+    console.log('--- OAuth Step 1: Incoming Query ---', {
       redirect_uri,
       state,
     });

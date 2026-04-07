@@ -11,6 +11,9 @@
 
 <body>
  <div id="nc-root"></div>
+ <script>
+  window.CMS_MANUAL_INIT = true;
+ </script>
  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
  <script>
   // Keep the debug listener to monitor the handshake
@@ -20,7 +23,10 @@
    }
   }, false);
 
-  console.log('ADMIN_DEBUG: Page loaded, Decap CMS auto-initializing...');
+  if (window.CMS) {
+   window.CMS.init();
+   console.log('ADMIN_DEBUG: CMS Manually Initialized');
+  }
  </script>
 </body>
 
