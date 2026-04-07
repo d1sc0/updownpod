@@ -41,10 +41,34 @@
     const script = document.createElement('script');
     script.src = "https://unpkg.com/decap-cms@^3.10.12/dist/decap-cms.js";
     script.onload = () => {
-     if (window.CMS && !window.CMS_INITIALIZED) { // Guard against double init
-      window.CMS_INITIALIZED = true; // Mark as initialized
-      window.CMS.init(); // Call init() without arguments to use window.CMS_CONFIG
-      console.log('ADMIN_DEBUG: Decap CMS Initialized via window.CMS_CONFIG');
+     if (window.CMS && !window.CMS_HAS_INIT) {
+      window.CMS_HAS_INIT = true;
+      window.CMS.init();
+
+      console.log('ADMIN_DEBUG: CMS.init() called.');
+
+      // Diagnostic: Check if localStorage is working
+      try {
+       localStorage.setItem('debug_test', 'working');
+       console.log('ADMIN_DEBUG: localStorage test:', localStorage.getItem('debug_test'));
+       localStorage.removeItem('debug_test');
+      } catch (e) {
+       console.error('ADMIN_DEBUG: localStorage is BLOCKED or full:', e.message);
+      }
+
+      // Interrogate the backend after a short delay to allow internal setup
+      setTimeout(() => {
+       const backend = window.CMS.getBackend();
+       if (backend) {
+        console.log('ADMIN_DEBUG: Backend identified as:', backend.constructor.name);
+        // Check internal configuration
+        const authEndpoint = window.CMS_CONFIG.backend.auth_endpoint;
+        const baseUrl = window.CMS_CONFIG.backend.base_url;
+        console.log(`ADMIN_DEBUG: Auth should hit: ${baseUrl}${authEndpoint}`);
+       } else {
+        console.warn('ADMIN_DEBUG: Backend not yet initialized.');
+       }
+      }, 1000);
      }
     };
     document.body.appendChild(script);
