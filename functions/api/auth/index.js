@@ -29,7 +29,7 @@ app.get(['/api/auth', '/api-auth', '/'], (req, res) => {
     const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
     const site_id = req.query.site_id || '';
     const scope = req.query.scope || 'repo';
-    const state = Math.random().toString(36).substring(2); // Optional: add state for CSRF protection
+    const state = req.query.state || Math.random().toString(36).substring(2);
     const githubAuthUrl =
       `https://github.com/login/oauth/authorize?` +
       `client_id=${encodeURIComponent(github_client_id)}` +
@@ -108,7 +108,7 @@ app.get('/api/auth/callback', async (req, res) => {
       <script>
         (function() {
           const message = "authorization:github:success:" + JSON.stringify(${JSON.stringify(responsePayload)});
-          window.opener.postMessage(message, window.location.origin);
+          window.opener.postMessage(message, "*");
           window.close();
         })();
       </script>
