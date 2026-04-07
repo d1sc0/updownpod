@@ -131,6 +131,7 @@ app.get('/api/auth/callback', async (req, res) => {
 
     const responsePayload = {
       token: access_token,
+      access_token: access_token, // Redundancy for different CMS versions
       provider: 'github',
     };
 
@@ -145,14 +146,12 @@ app.get('/api/auth/callback', async (req, res) => {
           const response = ${JSON.stringify(responsePayload)};
           const message = "authorization:github:success:" + JSON.stringify(response);
           
-          console.log("Attempting handshake...");
-          
           if (window.opener) {
             try {
               window.opener.postMessage(message, "*");
-              console.log("Handshake sent successfully.");
-              // Small delay before closing to ensure message is dispatched
-              setTimeout(() => window.close(), 500);
+              // Increased delay to ensure the main window has time to process
+              // before the popup is destroyed.
+              setTimeout(() => window.close(), 1000);
             } catch (e) {
               console.error("PostMessage failed:", e);
               document.body.innerHTML = "<h1>Error</h1><p>Failed to send login info to main window.</p>";
