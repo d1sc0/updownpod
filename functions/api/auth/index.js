@@ -32,20 +32,24 @@ app.get(['/api/auth', '/api-auth', '/'], (req, res) => {
     const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
     const site_id = req.query.site_id || '';
     const scope = req.query.scope || 'repo';
-    const state = req.query.state || Math.random().toString(36).substring(2);
+    const state = req.query.state;
 
     console.log('--- OAuth Step 1: Redirecting to GitHub ---', {
       redirect_uri,
       state,
     });
 
-    const githubAuthUrl =
+    let githubAuthUrl =
       `https://github.com/login/oauth/authorize?` +
       `client_id=${encodeURIComponent(github_client_id)}` +
       `&redirect_uri=${encodeURIComponent(redirect_uri)}` +
       `&scope=${encodeURIComponent(scope)}` +
-      (site_id ? `&site_id=${encodeURIComponent(site_id)}` : '') +
-      `&state=${encodeURIComponent(state)}`;
+      (site_id ? `&site_id=${encodeURIComponent(site_id)}` : '');
+
+    if (state) {
+      githubAuthUrl += `&state=${encodeURIComponent(state)}`;
+    }
+
     res.redirect(githubAuthUrl);
   } catch (error) {
     res.status(500).send('OAuth setup error: ' + error.message);
@@ -81,7 +85,7 @@ app.post(['/api/auth/token', '/api-auth/token', '/token'], async (req, res) => {
 
     const access_token = tokenRes.data.access_token;
     if (!access_token) throw new Error('No access token');
-    res.json({ token: access_token, provider: 'github' });
+    res.json({ token: access_token, access_token, provider: 'github' });
   } catch (error) {
     console.error('Auth Error:', error.response?.data || error.message);
     res

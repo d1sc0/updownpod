@@ -10,39 +10,17 @@
 </head>
 
 <body>
- <script>
-  window.CMS_MANUAL_INIT = true;
- </script>
  <div id="nc-root"></div>
  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
  <script>
-  if (window.CMS) {
-   // 1. Setup debug/bridge listener immediately
-   window.addEventListener('message', (e) => {
-    console.log('ADMIN_DEBUG: Message received from', e.origin);
+  // Keep the debug listener to monitor the handshake
+  window.addEventListener('message', (e) => {
+   if (typeof e.data === 'string' && e.data.startsWith('authorization:github:success:')) {
+    console.log('ADMIN_DEBUG: Received Auth Message:', e.data);
+   }
+  }, false);
 
-    if (typeof e.data === 'string' && e.data.startsWith('authorization:github:success:')) {
-     console.log('ADMIN_DEBUG: GitHub Auth Success detected.');
-
-     // 2. Resilience: If the CMS doesn't react in 2 seconds, 
-     // it might have missed the window-specific listener.
-     // Re-dispatching to the current window can sometimes trigger the catch-all.
-     setTimeout(() => {
-      if (document.querySelector('.nc-app-header-userName') === null) {
-       console.log('ADMIN_DEBUG: CMS seems stuck. Re-dispatching message to window.');
-       window.dispatchEvent(new MessageEvent('message', {
-        data: e.data,
-        origin: e.origin
-       }));
-      }
-     }, 2000);
-    }
-   }, false);
-
-   // 3. Initialize CMS
-   window.CMS.init();
-   console.log('ADMIN_DEBUG: CMS Initialized');
-  }
+  console.log('ADMIN_DEBUG: Page loaded, Decap CMS auto-initializing...');
  </script>
 </body>
 
