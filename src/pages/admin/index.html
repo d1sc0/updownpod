@@ -5,8 +5,9 @@
  <meta charset="utf-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
  <meta name="robots" content="noindex" />
- <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
  <title>Content Manager</title>
+ <!-- Include js-yaml in the head to ensure it is available for initialization -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 </head>
 
 <body>
@@ -16,30 +17,31 @@
  </script>
  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
  <script>
-  (async () => {
-   // 1. Fetch the config manually to ensure it's loaded before init
-   const response = await fetch('/admin/config.yml');
-   const configText = await response.text();
+  (async function () {
+   try {
+    // 1. Fetch the config manually
+    const response = await fetch('/admin/config.yml');
+    const configText = await response.text();
 
-   // 2. Add debug listener
-   window.addEventListener('message', (e) => {
-    if (typeof e.data === 'string' && e.data.startsWith('authorization:github:success:')) {
-     console.log('ADMIN_DEBUG: Received Auth Message:', e.data);
+    // 2. Add debug listener
+    window.addEventListener('message', (e) => {
+     if (typeof e.data === 'string' && e.data.startsWith('authorization:github:success:')) {
+      console.log('ADMIN_DEBUG: Received Auth Message:', e.data);
+     }
+    }, false);
+
+    // 3. Initialize CMS with the explicit config object
+    if (window.CMS && window.jsyaml) {
+     window.CMS.init({
+      config: window.jsyaml.load(configText)
+     });
+     console.log('ADMIN_DEBUG: CMS Initialized with explicit config');
     }
-   }, false);
-
-   // 3. Initialize CMS with the explicit config string
-   // This ensures Decap CMS enters the correct state for OAuth
-   if (window.CMS) {
-    window.CMS.init({
-     config: window.jsyaml.load(configText)
-    });
-    console.log('ADMIN_DEBUG: CMS Initialized with explicit config');
+   } catch (err) {
+    console.error('ADMIN_DEBUG: Error loading or parsing config:', err);
    }
   })();
  </script>
- <!-- Include js-yaml to parse the config before passing to Decap -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 </body>
 
 </html>
