@@ -18,7 +18,7 @@
  <script>
   (async function () {
    try {
-    // 1. Fetch and parse config before loading the CMS
+    // 1. Fetch and parse config
     const response = await fetch('/admin/config.yml');
     if (!response.ok) throw new Error('config.yml not found');
     const configText = await response.text();
@@ -38,30 +38,18 @@
     const script = document.createElement('script');
     script.src = "https://unpkg.com/decap-cms@^3.10.12/dist/decap-cms.js";
     script.onload = () => {
-     if (window.CMS) {
+     if (window.CMS && !window.CMS_INITIALIZED) {
+      window.CMS_INITIALIZED = true;
       window.CMS.init({ config });
       console.log('ADMIN_DEBUG: CMS Initialized');
      }
     };
     document.body.appendChild(script);
    } catch (err) {
-    console.error('ADMIN_DEBUG Error:', err.message);
+    console.error('ADMIN_DEBUG Init Error:', err.message);
    }
   })();
  </script>
-</body>
-
-</html>
-console.log('ADMIN_DEBUG: CMS Initialized');
-}
-};
-document.body.appendChild(script);
-} catch (err) {
-console.error('ADMIN_DEBUG Init Error:', err.message);
-console.error('ADMIN_DEBUG Error:', err.message);
-}
-})();
-</script>
 </body>
 
 </html>
