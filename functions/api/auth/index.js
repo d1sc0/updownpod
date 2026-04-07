@@ -43,7 +43,7 @@ app.get(['/api/auth', '/api-auth', '/'], (req, res) => {
     const githubAuthUrl =
       `https://github.com/login/oauth/authorize?` +
       `client_id=${encodeURIComponent(github_client_id)}` +
-      `&redirect_uri=${redirect_uri}` +
+      `&redirect_uri=${encodeURIComponent(redirect_uri)}` +
       `&scope=${encodeURIComponent(scope)}` +
       (site_id ? `&site_id=${encodeURIComponent(site_id)}` : '') +
       `&state=${encodeURIComponent(state)}`;
@@ -100,7 +100,10 @@ app.get('/api/auth/callback', async (req, res) => {
     const { github_client_id, github_client_secret, base_url } = getConfig();
     const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
 
-    console.log('--- OAuth Step 2: Callback HIT ---', { code, redirect_uri });
+    console.log('--- OAuth Step 2: Callback HIT (GET) ---', {
+      code,
+      redirect_uri,
+    });
 
     const tokenRes = await axios.post(
       'https://github.com/login/oauth/access_token',
@@ -114,6 +117,8 @@ app.get('/api/auth/callback', async (req, res) => {
         headers: { Accept: 'application/json', 'User-Agent': 'Decap-CMS-Auth' },
       },
     );
+
+    console.log('--- OAuth Step 2: GitHub Response ---', tokenRes.data);
 
     const access_token = tokenRes.data.access_token;
     if (!access_token) {
@@ -130,11 +135,30 @@ app.get('/api/auth/callback', async (req, res) => {
       provider: 'github',
     };
 
+    // Include state if it was provided by Decap CMS
+    if (req.query.state) {
+      responsePayload.state = req.query.state;
+    }
+
     const script = `
       <script>
         (function() {
-          const message = "authorization:github:success:" + JSON.stringify(${JSON.stringify(responsePayload)});
-          window.opener.postMessage(message, "*");
+          const response = ${JSON.stringify(responsePayload)};
+          const message = "authorization:github:success:" + JSON.stringify(response);
+          
+          // Attempt to communicate with the opener
+          if (window.opener && window.opener !== window) {
+            // Using "*" as targetOrigin is the most reliable way to handle the 
+            // handshake when the function domain and hosting domain differ.
+            window.opener.postMessage(message, "*");
+            console.log("Handshake sent to opener.");
+          } else {
+            // If window.opener is null, the handshake cannot complete.
+            document.body.innerHTML = "<h1>Authentication Error</h1><p>The login popup lost connection to the main window. Please close this and try again.</p>";
+            console.error("No opener found.");
+            return;
+          }
+
           window.close();
         })();
       </script>
