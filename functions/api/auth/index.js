@@ -33,11 +33,12 @@ app.get(['/api/auth', '/api-auth', '/'], (req, res) => {
     const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
     const site_id = req.query.site_id || '';
     const scope = req.query.scope || 'repo';
-    const state = encodeURIComponent(
-      req.query.state || Math.random().toString(36).substring(2),
-    );
+    const state = req.query.state || Math.random().toString(36).substring(2);
 
-    console.log('--- OAuth Authorize ---', { redirect_uri, state });
+    console.log('--- OAuth Step 1: Redirecting to GitHub ---', {
+      redirect_uri,
+      state,
+    });
 
     const githubAuthUrl =
       `https://github.com/login/oauth/authorize?` +
@@ -45,7 +46,7 @@ app.get(['/api/auth', '/api-auth', '/'], (req, res) => {
       `&redirect_uri=${redirect_uri}` +
       `&scope=${encodeURIComponent(scope)}` +
       (site_id ? `&site_id=${encodeURIComponent(site_id)}` : '') +
-      `&state=${state}`;
+      `&state=${encodeURIComponent(state)}`;
     res.redirect(githubAuthUrl);
   } catch (error) {
     res.status(500).send('OAuth setup error: ' + error.message);
@@ -61,29 +62,32 @@ app.post(['/api/auth/token', '/api-auth/token', '/token'], async (req, res) => {
     const { github_client_id, github_client_secret, base_url } = getConfig();
     const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
 
-    const params = new URLSearchParams();
-    params.append('client_id', github_client_id);
-    params.append('client_secret', github_client_secret);
-    params.append('code', code);
-    params.append('redirect_uri', redirect_uri);
+    console.log('--- OAuth Step 2: Token Exchange (POST) ---', {
+      code,
+      redirect_uri,
+    });
 
     const tokenRes = await axios.post(
       'https://github.com/login/oauth/access_token',
-      params,
       {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'User-Agent': 'Decap-CMS-Auth',
-        },
+        client_id: github_client_id,
+        client_secret: github_client_secret,
+        code: code,
+        redirect_uri: redirect_uri,
+      },
+      {
+        headers: { Accept: 'application/json', 'User-Agent': 'Decap-CMS-Auth' },
       },
     );
+
     const access_token = tokenRes.data.access_token;
     if (!access_token) throw new Error('No access token');
     res.json({ token: access_token, provider: 'github' });
   } catch (error) {
     console.error('Auth Error:', error.response?.data || error.message);
-    res.status(error.response?.status || 500).json({ error: error.message });
+    res
+      .status(error.response?.status || 500)
+      .json({ error: error.response?.data || error.message });
   }
 });
 
@@ -96,25 +100,21 @@ app.get('/api/auth/callback', async (req, res) => {
     const { github_client_id, github_client_secret, base_url } = getConfig();
     const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
 
-    console.log('--- /api/auth/callback HIT ---', { code, redirect_uri });
-
-    const params = new URLSearchParams();
-    params.append('client_id', github_client_id);
-    params.append('client_secret', github_client_secret);
-    params.append('code', code);
-    params.append('redirect_uri', redirect_uri);
+    console.log('--- OAuth Step 2: Callback HIT ---', { code, redirect_uri });
 
     const tokenRes = await axios.post(
       'https://github.com/login/oauth/access_token',
-      params,
       {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'User-Agent': 'Decap-CMS-Auth',
-        },
+        client_id: github_client_id,
+        client_secret: github_client_secret,
+        code: code,
+        redirect_uri: redirect_uri,
+      },
+      {
+        headers: { Accept: 'application/json', 'User-Agent': 'Decap-CMS-Auth' },
       },
     );
+
     const access_token = tokenRes.data.access_token;
     if (!access_token) {
       console.error('No access token. Full GitHub response:', tokenRes.data);
