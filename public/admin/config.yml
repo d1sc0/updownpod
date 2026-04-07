@@ -5,7 +5,6 @@ backend:
   auth_scope: 'repo'
   base_url: 'https://updownpod-79a0d.web.app'
   auth_endpoint: '/api/auth'
-  # You may need to set up a GitHub OAuth app for production use
 
 media_folder: 'public/social_images'
 public_folder: '/social_images'

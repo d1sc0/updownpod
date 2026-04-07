@@ -3,7 +3,6 @@ const { defineJsonSecret } = require('firebase-functions/params');
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
-const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(cors({ origin: true }));
@@ -100,15 +99,16 @@ app.get('/api/auth/callback', async (req, res) => {
         );
     }
 
-    const responsePayload = JSON.stringify({
+    const responsePayload = {
       token: access_token,
       provider: 'github',
-    });
+    };
 
     const script = `
       <script>
         (function() {
-          window.opener.postMessage('authorization:github:success:${responsePayload}', '*');
+          const message = "authorization:github:success:" + JSON.stringify(${JSON.stringify(responsePayload)});
+          window.opener.postMessage(message, window.location.origin);
           window.close();
         })();
       </script>
