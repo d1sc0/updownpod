@@ -43,6 +43,7 @@
     script.onload = () => {
      if (window.CMS && !window.CMS_HAS_INIT) {
       window.CMS_HAS_INIT = true;
+      console.log('ADMIN_DEBUG: Calling CMS.init() with config.backend:', window.CMS_CONFIG.backend); // Added log
       window.CMS.init({ config: window.CMS_CONFIG }); // Pass the config explicitly
 
       console.log('ADMIN_DEBUG: CMS.init() called.');
@@ -57,7 +58,7 @@
       }
 
       // Interrogate the backend after a short delay to allow internal setup
-      setTimeout(() => {
+      setTimeout(() => { // Increased timeout for backend initialization
        const backend = window.CMS.getBackend();
        if (backend) {
         console.log('ADMIN_DEBUG: Backend identified as:', backend.constructor.name);
@@ -68,7 +69,7 @@
        } else {
         console.warn('ADMIN_DEBUG: Backend not yet initialized.');
        }
-      }, 1000);
+      }, 3000); // Increased to 3 seconds
      }
     };
     document.body.appendChild(script);
