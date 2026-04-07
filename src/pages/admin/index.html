@@ -16,33 +16,39 @@
 <body>
  <div id="nc-root"></div>
  <script>
-  (async () => {
+  (async function () {
    try {
-    // 1. Fetch and parse config first
-    const response = await fetch('config.yml');
+    // 1. Fetch config first
+    const response = await fetch('/admin/config.yml');
     if (!response.ok) throw new Error('config.yml not found');
     const configText = await response.text();
-    const config = jsyaml.load(configText);
 
-    // 2. Setup handshake listener
+    // 2. Set the global config object. 
+    // Decap CMS v3 checks for window.CMS_CONFIG during startup.
+    window.CMS_CONFIG = jsyaml.load(configText);
+
+    // 3. Setup handshake listener
     window.addEventListener('message', (e) => {
      if (typeof e.data === 'string' && e.data.startsWith('authorization:github:success:')) {
-      console.log('ADMIN_DEBUG: OAuth handshake message received');
+      console.log('ADMIN_DEBUG: Handshake received');
      }
     }, false);
 
-    // 3. Dynamically load Decap CMS script
+    // 4. Dynamically load Decap CMS script
     const script = document.createElement('script');
     script.src = "https://unpkg.com/decap-cms@^3.10.12/dist/decap-cms.js";
     script.onload = () => {
-     if (window.CMS) {
-      window.CMS.init({ config });
-      console.log('ADMIN_DEBUG: CMS Initialized with manual configuration');
+     // If we set window.CMS_CONFIG, we call init() without arguments
+     // to trigger the manual start using that global object.
+     if (window.CMS && !window.CMS_INITIALIZED) {
+      window.CMS_INITIALIZED = true;
+      window.CMS.init();
+      console.log('ADMIN_DEBUG: CMS Initialized');
      }
     };
     document.body.appendChild(script);
    } catch (err) {
-    console.error('ADMIN_DEBUG Error:', err.message);
+    console.error('ADMIN_DEBUG Init Error:', err.message);
    }
   })();
  </script>
