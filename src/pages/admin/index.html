@@ -23,8 +23,8 @@
     if (!response.ok) throw new Error('config.yml not found');
     const configText = await response.text();
     const config = jsyaml.load(configText);
-
-    console.log('ADMIN_DEBUG: Config loaded', config.backend);
+    // Prevent Decap from trying to load config.yml again automatically
+    config.load_config_file = false;
 
     // 2. Setup handshake listener for debugging
     window.addEventListener('message', (e) => {
