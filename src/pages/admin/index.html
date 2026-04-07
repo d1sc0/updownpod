@@ -18,63 +18,49 @@
  <script>
   (async function () {
    try {
-    // 1. Fetch and parse config before the CMS loads
+    // 1. Fetch and parse config.yml
     const response = await fetch('/admin/config.yml');
     if (!response.ok) throw new Error('config.yml not found');
     const configText = await response.text();
+    const config = jsyaml.load(configText);
 
-    // Set the global config object. Decap CMS v3 checks for this during startup.
-    window.CMS_CONFIG = jsyaml.load(configText);
-    // Ensure the config explicitly tells Decap not to load config.yml again
-    window.CMS_CONFIG.load_config_file = false;
+    // 2. Prevent Decap from re-fetching config.yml (fixes unique collection name errors)
+    config.load_config_file = false;
+    window.CMS_CONFIG = config;
 
-    console.log('ADMIN_DEBUG: Decap Config Object:', window.CMS_CONFIG);
-
-    // 2. Setup handshake listener for debugging
+    // 3. Setup handshake listener
     window.addEventListener('message', (e) => {
      if (typeof e.data === 'string' && e.data.startsWith('authorization:github:success:')) {
-      console.log('ADMIN_DEBUG: Handshake received from popup');
+      console.log('ADMIN_DEBUG: Handshake message received');
      }
     }, false);
 
-    // 3. Dynamically load Decap CMS script AFTER config is ready
+    // 4. Load the CMS script
     const script = document.createElement('script');
     script.src = "https://unpkg.com/decap-cms@^3.10.12/dist/decap-cms.js";
     script.onload = () => {
-     if (window.CMS && !window.CMS_HAS_INIT) {
-      window.CMS_HAS_INIT = true;
-      console.log('ADMIN_DEBUG: Calling CMS.init() with config.backend:', window.CMS_CONFIG.backend); // Added log
-      window.CMS.init({ config: window.CMS_CONFIG }); // Pass the config explicitly
+     if (window.CMS && !window.CMS_INITIALIZED) {
+      window.CMS_INITIALIZED = true;
 
-      console.log('ADMIN_DEBUG: CMS.init() called.');
+      // Initialize with the verified config object
+      window.CMS.init({ config });
+      console.log('ADMIN_DEBUG: CMS Initialized');
 
-      // Diagnostic: Check if localStorage is working
-      try {
-       localStorage.setItem('debug_test', 'working');
-       console.log('ADMIN_DEBUG: localStorage test:', localStorage.getItem('debug_test'));
-       localStorage.removeItem('debug_test');
-      } catch (e) {
-       console.error('ADMIN_DEBUG: localStorage is BLOCKED or full:', e.message);
-      }
-
-      // Interrogate the backend after a short delay to allow internal setup
-      setTimeout(() => { // Increased timeout for backend initialization
+      // Verification: Check if the backend is actually ready
+      setTimeout(() => {
        const backend = window.CMS.getBackend();
        if (backend) {
-        console.log('ADMIN_DEBUG: Backend identified as:', backend.constructor.name);
-        // Check internal configuration
-        const authEndpoint = window.CMS_CONFIG.backend.auth_endpoint;
-        const baseUrl = window.CMS_CONFIG.backend.base_url;
-        console.log(`ADMIN_DEBUG: Auth should hit: ${baseUrl}${authEndpoint}`);
+        console.log('ADMIN_DEBUG: Backend success:', backend.constructor.name);
        } else {
-        console.warn('ADMIN_DEBUG: Backend not yet initialized.');
+        console.error('ADMIN_DEBUG: Backend failed to initialize. Inspect config state below.');
+        console.log('ADMIN_DEBUG: Internal Config:', window.CMS.getStore().getState().config.toJS());
        }
-      }, 3000); // Increased to 3 seconds
+      }, 2000);
      }
     };
     document.body.appendChild(script);
    } catch (err) {
-    console.error('ADMIN_DEBUG Error:', err.message);
+    console.error('ADMIN_DEBUG Init Error:', err.message);
    }
   })();
  </script>
