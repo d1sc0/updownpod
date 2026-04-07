@@ -32,7 +32,7 @@ app.get(['/api/auth', '/api-auth', '/'], (req, res) => {
     const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
     const site_id = req.query.site_id || '';
     const scope = req.query.scope || 'repo';
-    const state = req.query.state || '';
+    const state = req.query.state;
 
     console.log('--- OAuth Step 1: Incoming Query ---', {
       redirect_uri,
@@ -48,6 +48,10 @@ app.get(['/api/auth', '/api-auth', '/'], (req, res) => {
 
     if (state) {
       githubAuthUrl += `&state=${encodeURIComponent(state)}`;
+    } else {
+      console.warn(
+        'WARNING: No state received from Decap CMS. Handshake might fail.',
+      );
     }
 
     res.redirect(githubAuthUrl);
