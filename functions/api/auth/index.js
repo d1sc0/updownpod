@@ -1,16 +1,30 @@
 const { onRequest } = require('firebase-functions/v2/https');
 const { defineJsonSecret } = require('firebase-functions/params');
 const express = require('express');
+const cors = require('cors');
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
-const cors = require('cors');
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: true }));
 app.use(express.json());
 
+// Use RUNTIME_CONFIG secret
+const runtimeConfig = defineJsonSecret('RUNTIME_CONFIG');
+
+// Helper to get config values
+function getConfig() {
+  const config = runtimeConfig.value();
+  if (!config || !config.decap) {
+    throw new Error(
+      'RUNTIME_CONFIG secret is missing or missing the "decap" key',
+    );
+  }
+  return config.decap;
+}
+
 // Start GitHub OAuth flow for Decap CMS (GET /api/auth)
-app.get(['/', '/api-auth', '/api/auth'], (req, res) => {
+app.get(['/api/auth', '/api-auth', '/'], (req, res) => {
   try {
     const { github_client_id, base_url } = getConfig();
     const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
@@ -30,42 +44,27 @@ app.get(['/', '/api-auth', '/api/auth'], (req, res) => {
   }
 });
 
-// Use RUNTIME_CONFIG secret
-const runtimeConfig = defineJsonSecret('RUNTIME_CONFIG');
-
-// Helper to get config values
-function getConfig() {
-  const config = runtimeConfig.value();
-  if (!config || !config.decap) {
-    throw new Error(
-      'RUNTIME_CONFIG secret is missing or missing the "decap" key',
-    );
-  }
-  return config.decap;
-}
-
 // Exchange code for access token (POST for Decap, GET for OAuth callback)
 app.post(['/token', '/api-auth/token'], async (req, res) => {
   const code = req.body?.code || req.query?.code;
   if (!code) return res.status(400).json({ error: 'Missing code' });
 
   try {
-    const { github_client_id, github_client_secret, jwt_secret } = getConfig();
+    const { github_client_id, github_client_secret, base_url } = getConfig();
+    const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
     const tokenRes = await axios.post(
       'https://github.com/login/oauth/access_token',
       {
         client_id: github_client_id,
         client_secret: github_client_secret,
         code,
+        redirect_uri,
       },
       { headers: { Accept: 'application/json' } },
     );
     const access_token = tokenRes.data.access_token;
     if (!access_token) throw new Error('No access token');
-    const jwtToken = jwt.sign({ access_token }, jwt_secret, {
-      expiresIn: '1h',
-    });
-    res.json({ token: jwtToken });
+    res.json({ token: access_token, provider: 'github' });
   } catch (error) {
     console.error('Auth Error:', error.response?.data || error.message);
     res.status(error.response?.status || 500).json({ error: error.message });
@@ -73,32 +72,48 @@ app.post(['/token', '/api-auth/token'], async (req, res) => {
 });
 
 // Handle OAuth callback for Decap CMS (GET /callback)
-app.get(['/callback', '/api-auth/callback'], async (req, res) => {
+app.get('/api/auth/callback', async (req, res) => {
   console.log('--- /api/auth/callback HIT ---', { query: req.query });
   const code = req.query?.code;
   if (!code) return res.status(400).send('Missing code');
   try {
-    const { github_client_id, github_client_secret, jwt_secret } = getConfig();
+    const { github_client_id, github_client_secret, base_url } = getConfig();
+    const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
+
     const tokenRes = await axios.post(
       'https://github.com/login/oauth/access_token',
       {
         client_id: github_client_id,
         client_secret: github_client_secret,
         code,
+        redirect_uri,
       },
       { headers: { Accept: 'application/json' } },
     );
     const access_token = tokenRes.data.access_token;
-    if (!access_token) throw new Error('No access token');
-    const jwtToken = jwt.sign({ access_token }, jwt_secret, {
-      expiresIn: '1h',
+    if (!access_token) {
+      console.error('No access token. Full GitHub response:', tokenRes.data);
+      return res
+        .status(400)
+        .send(
+          'No access token. GitHub response: ' + JSON.stringify(tokenRes.data),
+        );
+    }
+
+    const responsePayload = JSON.stringify({
+      token: access_token,
+      provider: 'github',
     });
-    // Always redirect to /admin/index.html on the site
-    const { base_url } = getConfig();
-    let site = base_url;
-    if (site.endsWith('/')) site = site.slice(0, -1);
-    const redirectUrl = `${site}/admin/index.html#/auth/callback?token=${jwtToken}`;
-    res.redirect(redirectUrl);
+
+    const script = `
+      <script>
+        (function() {
+          window.opener.postMessage('authorization:github:success:${responsePayload}', '*');
+          window.close();
+        })();
+      </script>
+    `;
+    res.send(`<!DOCTYPE html><html><body>${script}</body></html>`);
   } catch (error) {
     console.error(
       'OAuth Callback Error:',
@@ -108,21 +123,19 @@ app.get(['/callback', '/api-auth/callback'], async (req, res) => {
   }
 });
 
-// ...existing code...
-
 // Proxy GitHub API requests (must be last)
 app.all('/*', async (req, res) => {
   const auth = req.headers.authorization;
-  if (!auth) return res.status(401).json({ error: 'Missing auth' });
+  if (!auth)
+    return res.status(401).json({ error: 'Missing Authorization header' });
+
   try {
-    const { jwt_secret } = getConfig();
-    const { access_token } = jwt.verify(
-      auth.replace('Bearer ', ''),
-      jwt_secret,
-    );
+    const access_token = auth.replace('Bearer ', '').replace('token ', '');
 
     // Strip function name prefix if present (e.g., /api-auth/user -> /user)
-    const cleanPath = req.url.replace(/^\/api-auth/, '');
+    const cleanPath = req.url
+      .replace(/^\/api\/auth/, '')
+      .replace(/^\/api-auth/, '');
 
     const githubRes = await axios({
       method: req.method,
