@@ -13,19 +13,25 @@
  <script>
   window.CMS_MANUAL_INIT = true;
  </script>
- <script>
-  window.addEventListener('message', (e) => {
-   console.log('ADMIN_DEBUG: Received message from', e.origin, 'Payload:', e.data);
-  }, false);
- </script>
  <div id="nc-root"></div>
  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-   if (window.CMS) {
-    window.CMS.init();
+  // Setup debug listener immediately
+  window.addEventListener('message', (e) => {
+   console.log('ADMIN_DEBUG: Received message from', e.origin);
+   console.log('ADMIN_DEBUG: Data:', e.data);
+
+   // If the CMS is initialized and this is an auth message, log it specifically
+   if (typeof e.data === 'string' && e.data.startsWith('authorization:github:success:')) {
+    console.log('ADMIN_DEBUG: Detected GitHub Auth Success string!');
    }
-  });
+  }, false);
+
+  // Initialize CMS immediately after script load to ensure listeners are ready
+  if (window.CMS) {
+   window.CMS.init();
+   console.log('ADMIN_DEBUG: CMS Initialized');
+  }
  </script>
 </body>
 

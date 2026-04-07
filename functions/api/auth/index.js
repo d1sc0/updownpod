@@ -145,20 +145,25 @@ app.get('/api/auth/callback', async (req, res) => {
           const response = ${JSON.stringify(responsePayload)};
           const message = "authorization:github:success:" + JSON.stringify(response);
           
-          // Attempt to communicate with the opener
-          if (window.opener && window.opener !== window) {
-            // Using "*" as targetOrigin is the most reliable way to handle the 
-            // handshake when the function domain and hosting domain differ.
-            window.opener.postMessage(message, "*");
-            console.log("Handshake sent to opener.");
+          console.log("Attempting handshake...");
+          
+          if (window.opener) {
+            try {
+              window.opener.postMessage(message, "*");
+              console.log("Handshake sent successfully.");
+              // Small delay before closing to ensure message is dispatched
+              setTimeout(() => window.close(), 500);
+            } catch (e) {
+              console.error("PostMessage failed:", e);
+              document.body.innerHTML = "<h1>Error</h1><p>Failed to send login info to main window.</p>";
+            }
           } else {
-            // If window.opener is null, the handshake cannot complete.
-            document.body.innerHTML = "<h1>Authentication Error</h1><p>The login popup lost connection to the main window. Please close this and try again.</p>";
-            console.error("No opener found.");
+            const msg = "No opener found. This usually happens due to cross-origin security or if the main window was refreshed.";
+            console.error(msg);
+            document.body.innerHTML = "<h1>Authentication Error</h1><p>" + msg + "</p>";
+            // Don't close the window so the user can see the error
             return;
           }
-
-          window.close();
         })();
       </script>
     `;
