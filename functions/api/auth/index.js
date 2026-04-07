@@ -19,7 +19,11 @@ function getConfig() {
       'RUNTIME_CONFIG secret is missing or missing the "decap" key',
     );
   }
-  return config.decap;
+  return {
+    github_client_id: config.decap.github_client_id?.trim(),
+    github_client_secret: config.decap.github_client_secret?.trim(),
+    base_url: config.decap.base_url?.trim(),
+  };
 }
 
 // Start GitHub OAuth flow for Decap CMS (GET /api/auth)
@@ -29,11 +33,16 @@ app.get(['/api/auth', '/api-auth', '/'], (req, res) => {
     const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
     const site_id = req.query.site_id || '';
     const scope = req.query.scope || 'repo';
-    const state = req.query.state || Math.random().toString(36).substring(2);
+    const state = encodeURIComponent(
+      req.query.state || Math.random().toString(36).substring(2),
+    );
+
+    console.log('--- OAuth Authorize ---', { redirect_uri, state });
+
     const githubAuthUrl =
       `https://github.com/login/oauth/authorize?` +
       `client_id=${encodeURIComponent(github_client_id)}` +
-      `&redirect_uri=${encodeURIComponent(redirect_uri)}` +
+      `&redirect_uri=${redirect_uri}` +
       `&scope=${encodeURIComponent(scope)}` +
       (site_id ? `&site_id=${encodeURIComponent(site_id)}` : '') +
       `&state=${state}`;
@@ -44,22 +53,30 @@ app.get(['/api/auth', '/api-auth', '/'], (req, res) => {
 });
 
 // Exchange code for access token (POST for Decap, GET for OAuth callback)
-app.post(['/token', '/api-auth/token'], async (req, res) => {
+app.post(['/api/auth/token', '/api-auth/token', '/token'], async (req, res) => {
   const code = req.body?.code || req.query?.code;
   if (!code) return res.status(400).json({ error: 'Missing code' });
 
   try {
     const { github_client_id, github_client_secret, base_url } = getConfig();
     const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
+
+    const params = new URLSearchParams();
+    params.append('client_id', github_client_id);
+    params.append('client_secret', github_client_secret);
+    params.append('code', code);
+    params.append('redirect_uri', redirect_uri);
+
     const tokenRes = await axios.post(
       'https://github.com/login/oauth/access_token',
+      params,
       {
-        client_id: github_client_id,
-        client_secret: github_client_secret,
-        code,
-        redirect_uri,
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'User-Agent': 'Decap-CMS-Auth',
+        },
       },
-      { headers: { Accept: 'application/json' } },
     );
     const access_token = tokenRes.data.access_token;
     if (!access_token) throw new Error('No access token');
@@ -72,22 +89,31 @@ app.post(['/token', '/api-auth/token'], async (req, res) => {
 
 // Handle OAuth callback for Decap CMS (GET /callback)
 app.get('/api/auth/callback', async (req, res) => {
-  console.log('--- /api/auth/callback HIT ---', { query: req.query });
   const code = req.query?.code;
   if (!code) return res.status(400).send('Missing code');
+
   try {
     const { github_client_id, github_client_secret, base_url } = getConfig();
     const redirect_uri = `${base_url.replace(/\/$/, '')}/api/auth/callback`;
 
+    console.log('--- /api/auth/callback HIT ---', { code, redirect_uri });
+
+    const params = new URLSearchParams();
+    params.append('client_id', github_client_id);
+    params.append('client_secret', github_client_secret);
+    params.append('code', code);
+    params.append('redirect_uri', redirect_uri);
+
     const tokenRes = await axios.post(
       'https://github.com/login/oauth/access_token',
+      params,
       {
-        client_id: github_client_id,
-        client_secret: github_client_secret,
-        code,
-        redirect_uri,
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'User-Agent': 'Decap-CMS-Auth',
+        },
       },
-      { headers: { Accept: 'application/json' } },
     );
     const access_token = tokenRes.data.access_token;
     if (!access_token) {
