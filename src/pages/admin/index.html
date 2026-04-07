@@ -24,6 +24,8 @@
     const configText = await response.text();
     const config = jsyaml.load(configText);
 
+    console.log('ADMIN_DEBUG: Fetched and parsed YAML successfully:', config);
+
     // 2. Prevent Decap from re-fetching config.yml (fixes unique collection name errors)
     config.load_config_file = false;
     window.CMS_CONFIG = config;
@@ -43,17 +45,33 @@
       window.CMS_INITIALIZED = true;
 
       // Initialize with the verified config object
+      console.log('ADMIN_DEBUG: Calling CMS.init(config)...');
       window.CMS.init({ config });
-      console.log('ADMIN_DEBUG: CMS Initialized');
 
-      // Verification: Check if the backend is actually ready
+      // Verification: Check if Decap processed the config
       setTimeout(() => {
        const backend = window.CMS.getBackend();
+       console.log('ADMIN_DEBUG: Checking CMS initialization status...');
+
        if (backend) {
-        console.log('ADMIN_DEBUG: Backend success:', backend.constructor.name);
+        console.log('ADMIN_DEBUG: [SUCCESS] Backend initialized:', backend.constructor.name);
+        console.log('ADMIN_DEBUG: Backend instance:', backend);
        } else {
-        console.error('ADMIN_DEBUG: Backend failed to initialize. Inspect config state below.');
-        console.log('ADMIN_DEBUG: Internal Config:', window.CMS.getStore().getState().config.toJS());
+        console.error('ADMIN_DEBUG: [FAILURE] Backend is null. The config was likely rejected by Decap.');
+
+        // Safely check internal state if possible
+        if (typeof window.CMS.getStore === 'function') {
+         try {
+          const state = window.CMS.getStore().getState();
+          console.log('ADMIN_DEBUG: Internal Redux Config State:', state.config.toJS());
+         } catch (e) {
+          console.error('ADMIN_DEBUG: Could not retrieve internal state:', e.message);
+         }
+        } else {
+         console.warn('ADMIN_DEBUG: window.CMS.getStore is not available on this version.');
+        }
+
+        console.log('ADMIN_DEBUG: Re-verify this was the object passed:', config);
        }
       }, 2000);
      }
