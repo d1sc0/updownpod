@@ -22,9 +22,13 @@
     const response = await fetch('/admin/config.yml');
     if (!response.ok) throw new Error('config.yml not found');
     const configText = await response.text();
-    const config = jsyaml.load(configText);
-    // Prevent Decap from trying to load config.yml again automatically
-    config.load_config_file = false;
+
+    // Set the global config object. Decap CMS v3 checks for this during startup.
+    window.CMS_CONFIG = jsyaml.load(configText);
+    // Ensure the config explicitly tells Decap not to load config.yml again
+    window.CMS_CONFIG.load_config_file = false;
+
+    console.log('ADMIN_DEBUG: Decap Config Object:', window.CMS_CONFIG);
 
     // 2. Setup handshake listener for debugging
     window.addEventListener('message', (e) => {
@@ -33,14 +37,14 @@
      }
     }, false);
 
-    // 3. Dynamically load Decap CMS script
+    // 3. Dynamically load Decap CMS script AFTER config is ready
     const script = document.createElement('script');
     script.src = "https://unpkg.com/decap-cms@^3.10.12/dist/decap-cms.js";
     script.onload = () => {
-     if (window.CMS) {
-      // 4. Initialize with the verified config object
-      window.CMS.init({ config });
-      console.log('ADMIN_DEBUG: Decap CMS Initialized');
+     if (window.CMS && !window.CMS_INITIALIZED) { // Guard against double init
+      window.CMS_INITIALIZED = true; // Mark as initialized
+      window.CMS.init(); // Call init() without arguments to use window.CMS_CONFIG
+      console.log('ADMIN_DEBUG: Decap CMS Initialized via window.CMS_CONFIG');
      }
     };
     document.body.appendChild(script);
