@@ -43,7 +43,7 @@
     script.onload = () => {
      if (window.CMS && !window.CMS_HAS_INIT) {
       window.CMS_HAS_INIT = true;
-      window.CMS.init();
+      window.CMS.init({ config: window.CMS_CONFIG }); // Pass the config explicitly
 
       console.log('ADMIN_DEBUG: CMS.init() called.');
 
