@@ -18,35 +18,34 @@
  <script>
   (async function () {
    try {
-    // 1. Fetch and parse config
+    // 1. Fetch and parse config before the CMS loads
     const response = await fetch('/admin/config.yml');
     if (!response.ok) throw new Error('config.yml not found');
     const configText = await response.text();
     const config = jsyaml.load(configText);
 
-    // 2. Set global config fallback
-    window.CMS_CONFIG = config;
+    console.log('ADMIN_DEBUG: Config loaded', config.backend);
 
-    // 3. Setup handshake listener for debugging
+    // 2. Setup handshake listener for debugging
     window.addEventListener('message', (e) => {
      if (typeof e.data === 'string' && e.data.startsWith('authorization:github:success:')) {
-      console.log('ADMIN_DEBUG: Handshake received');
+      console.log('ADMIN_DEBUG: Handshake received from popup');
      }
     }, false);
 
-    // 4. Dynamically load Decap CMS script
+    // 3. Dynamically load Decap CMS script
     const script = document.createElement('script');
     script.src = "https://unpkg.com/decap-cms@^3.10.12/dist/decap-cms.js";
     script.onload = () => {
-     if (window.CMS && !window.CMS_INITIALIZED) {
-      window.CMS_INITIALIZED = true;
+     if (window.CMS) {
+      // 4. Initialize with the verified config object
       window.CMS.init({ config });
-      console.log('ADMIN_DEBUG: CMS Initialized');
+      console.log('ADMIN_DEBUG: Decap CMS Initialized');
      }
     };
     document.body.appendChild(script);
    } catch (err) {
-    console.error('ADMIN_DEBUG Init Error:', err.message);
+    console.error('ADMIN_DEBUG Error:', err.message);
    }
   })();
  </script>
