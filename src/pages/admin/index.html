@@ -20,12 +20,12 @@
    try {
     // 1. Fetch config first
     const response = await fetch('/admin/config.yml');
-    if (!response.ok) throw new Error('config.yml not found');
+    if (!response.ok) throw new Error(`config.yml not found: ${response.status}`);
     const configText = await response.text();
 
-    // 2. Set the global config object. 
-    // Decap CMS v3 checks for window.CMS_CONFIG during startup.
-    window.CMS_CONFIG = jsyaml.load(configText);
+    // 2. Parse the config object
+    const config = jsyaml.load(configText);
+    window.CMS_CONFIG = config; // Keep as global fallback
 
     // 3. Setup handshake listener
     window.addEventListener('message', (e) => {
@@ -42,7 +42,7 @@
      // to trigger the manual start using that global object.
      if (window.CMS && !window.CMS_INITIALIZED) {
       window.CMS_INITIALIZED = true;
-      window.CMS.init();
+      window.CMS.init({ config });
       console.log('ADMIN_DEBUG: CMS Initialized');
      }
     };
