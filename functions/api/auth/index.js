@@ -143,7 +143,6 @@ app.get('/api/auth/callback', async (req, res) => {
       provider: 'github',
     };
 
-    // Include state if it was provided by Decap CMS
     if (req.query.state) {
       responsePayload.state = req.query.state;
     }
