@@ -1,0 +1,31 @@
+# Sveltia CMS configuration file
+# See: https://github.com/sveltia/cms for documentation and options
+
+backend:
+  name: github
+  branch: main
+  repo: d1sc0/updownpod
+
+media_folder: 'public/social_images'
+publish_mode: editorial_workflow
+
+collections:
+  - name: 'episodes'
+    label: 'Episodes'
+    folder: 'src/content/episodes'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Draft', name: 'draft', widget: 'boolean' }
+      - { label: 'Date', name: 'pubDate', widget: 'datetime' }
+      - { label: 'Description', name: 'description', widget: 'text' }
+      - { label: 'Audio URL', name: 'mp3', widget: 'string' }
+      - { label: 'Audio Title', name: 'mp3title', widget: 'string' }
+      - {
+          label: 'SocialImage (svg)',
+          name: 'socialImage',
+          widget: 'image',
+          required: false,
+        }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
