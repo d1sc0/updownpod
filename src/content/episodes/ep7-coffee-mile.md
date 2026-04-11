@@ -19,3 +19,5 @@ The route came from [Strava](https://www.strava.com/) ideas nearby, and I ended 
 ![person taking a photograph](/src/assets/pexels-anna-holodna-36944403FULL.jpg)
 
 [Photo by Anna Holodna on Pexels](https://www.pexels.com/photo/black-and-white-portrait-of-woman-with-camera-36944403/)
+
+![](/src/assets/page_images/stuart-mackenzie.jpg)
