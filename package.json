@@ -3,15 +3,13 @@
   "type": "module",
   "version": "1.0.2",
   "scripts": {
-    "predev": "npm run convert:social:1200",
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && ts-node scripts/generate-og-images.ts && ts-node scripts/generate-preview-images.ts",
+    "build": "astro build && ts-node src/scripts/generate-og-images.ts && ts-node src/scripts/generate-preview-images.ts",
     "preview": "astro preview",
     "astro": "astro",
-    "convert:social:1200": "bash scripts/convert-social-images-1200.sh",
-    "generate:og": "ts-node scripts/generate-og-images.ts",
-    "generate:preview": "ts-node scripts/generate-preview-images.ts"
+    "generate:og": "ts-node src/scripts/generate-og-images.ts",
+    "generate:preview": "ts-node src/scripts/generate-preview-images.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",

@@ -4,7 +4,6 @@ draft: false
 slug: ep4-rainy-loop
 pubDate: 2025-08-06
 description: A wet evening run turns into a useful perspective shift. Through rain, puddles, and a post-run pub stop, the episode explores how mild discomfort can sharpen focus, soften stress, and create space for better decisions when everything feels noisy.
-socialImage: /social_images/episode4.svg
 mp3: 'https://archive.org/download/thebluewound_2602_librivox/bluewound_03_garrett.mp3'
 mp3title: 'Episode 4 - Rainy Loop'
 ---

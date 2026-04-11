@@ -4,6 +4,7 @@ A modern Astro v6 site for the Upstairs Downstairs podcast, featuring:
 
 - Content Layer API for episodes
 - Sveltia CMS integration for easy editing
+- Automated Open Graph (OG) and preview image generation (Node + Puppeteer)
 - Audio player, episode navigation, and social sharing
 
 ## Quick Start
@@ -16,6 +17,13 @@ A modern Astro v6 site for the Upstairs Downstairs podcast, featuring:
    ```
    npm run dev
    ```
+3. To generate OG and preview images (after adding or editing episodes):
+   ```
+   npm run build
+   # or run manually:
+   npx ts-node src/scripts/generate-og-images.ts
+   npx ts-node src/scripts/generate-preview-images.ts
+   ```
 
 ## Requirements
 
@@ -23,7 +31,7 @@ A modern Astro v6 site for the Upstairs Downstairs podcast, featuring:
 
 ## Docs
 
-See the [docs/](docs/) folder for setup, CMS, and migration details.
+See the [docs/](docs/) folder for setup, CMS, image automation, and migration details.
 
 ## To-do
 

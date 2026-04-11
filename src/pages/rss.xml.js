@@ -20,9 +20,9 @@ export async function GET(context) {
       title: episode.data.title,
       pubDate: episode.data.pubDate,
       description: `${episode.data.description}`,
-      link: `/episodes/${episode.slug}/`,
-      content: `<p>${episode.data.description} <a href="${context.site}episodes/${episode.slug}/">[read more...]</a></p>
-      <p><img src="https://hellostu.xyz${episode.data.socialImage}" width="600px" height="300px" /></p>`,
+      link: `/episodes/${episode.id}/`,
+      content: `<p>${episode.data.description} <a href="${context.site}episodes/${episode.id}/">[read more...]</a></p>
+      <p><img src="${context.site}generated_preview_images/${episode.id}.png" width="600" height="600" alt="Preview image for ${episode.data.title}" /></p>`,
     })),
   });
 }

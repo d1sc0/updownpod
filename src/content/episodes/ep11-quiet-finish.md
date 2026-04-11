@@ -4,7 +4,6 @@ draft: false
 slug: ep11-quiet-finish
 pubDate: 2025-08-13
 description: The week closes with a quiet review session, a long dusk walk, and a simple plan for Monday. Instead of chasing a dramatic finish, this episode focuses on clean closure archive what is done, name the next priorities, and protect recovery time.
-socialImage: /social_images/episode11.svg
 mp3: 'https://archive.org/download/thebluewound_2602_librivox/bluewound_10_garrett.mp3'
 mp3title: 'Episode 11 - Quiet Finish'
 ---

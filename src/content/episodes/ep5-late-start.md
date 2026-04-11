@@ -4,7 +4,6 @@ draft: false
 slug: ep5-late-start
 pubDate: 2025-08-07
 description: A rough morning and missed routine do not sink the day. With a short mental reset, tighter time blocks, and realistic pacing, the episode shows how to recover rhythm without panic and still finish meaningful work while protecting tomorrow's energy.
-socialImage: /social_images/episode5.svg
 mp3: 'https://archive.org/download/thebluewound_2602_librivox/bluewound_04_garrett.mp3'
 mp3title: 'Episode 5 - Late Start'
 ---

@@ -21,7 +21,7 @@ const uniqueId = `audio-player-${Math.random().toString(36).substr(2, 9)}`;
   <div class="player-content-grid">
     <div class="episode-image-placeholder">
       <img
-        src={data.socialImage}
+        src={`/generated_preview_images/${data.id || data.slug}.png`}
         alt="Episode cover"
         width={400}
         height={400}

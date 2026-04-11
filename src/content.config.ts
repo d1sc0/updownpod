@@ -9,7 +9,6 @@ const episodes = defineCollection({
     slug: z.string(),
     pubDate: z.date(),
     description: z.string(),
-    socialImage: z.string().optional(),
     mp3: z.string().url().optional(),
     mp3title: z.string().optional(),
     draft: z.boolean().optional(),

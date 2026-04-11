@@ -4,7 +4,6 @@ draft: false
 slug: ep9-notes-from-bench
 pubDate: 2025-08-11
 description: Stepping away from screens and taking notes on a park bench produces sharper thinking than another tab-heavy desk session. This episode highlights the creative upside of constraints, quieter environments, and doing less in order to think more clearly.
-socialImage: /social_images/episode9.svg
 mp3: 'https://archive.org/download/thebluewound_2602_librivox/bluewound_08_garrett.mp3'
 mp3title: 'Episode 9 - Bench Notes'
 ---
