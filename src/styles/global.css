@@ -51,3 +51,26 @@ h2 {
 p.toplink {
   text-align: center;
 }
+
+img[src*='FULL'] {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0rem;
+  border-radius: 0.3rem;
+}
+
+img[src*='RIGHT'] {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+}
+
+img[src*='LEFT'] {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+}

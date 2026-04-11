@@ -214,31 +214,6 @@ section.episode .episodeDate {
   font-size: 0.9rem;
 }
 
-section.episode img[src*='FULL'] {
-  width: 100%;
-  height: auto;
-  margin-bottom: 0rem;
-  border-radius: 0.3rem;
-}
-
-.imageLeft,
-section.episode img[src*='RIGHT'] {
-  width: 100%;
-  height: auto;
-  margin: 0;
-  margin-bottom: 1rem;
-  border-radius: 0.3rem;
-}
-
-.imageRight,
-section.episode img[src*='LEFT'] {
-  width: 100%;
-  height: auto;
-  margin: 0;
-  margin-bottom: 1rem;
-  border-radius: 0.3rem;
-}
-
 /* Audio Player Styles (relevant for episode layout) */
 .custom-audio-player {
   background-color: var(--white);
