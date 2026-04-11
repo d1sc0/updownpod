@@ -2,9 +2,9 @@
 
 This script generates Open Graph (OG) images for all podcast episodes using Puppeteer and a custom HTML template.
 
-- **Script:** `src/scripts/generate-og-images.ts`
-- **Template:** `src/scripts/social-image-template.html`
-- **Background:** `src/scripts/og-background.png`
+- **Script:** `src/scripts/image-generation/generate-og-images.ts`
+- **Template:** `src/scripts/image-generation/social-image-template.html`
+- **Background:** `src/scripts/image-generation/og-background.png`
 - **Output:** `public/generated_social_images/` (1200x630 PNG)
 
 ## How It Works
@@ -25,8 +25,10 @@ npm run build
 
 Or manually:
 
-```
 npx ts-node src/scripts/generate-og-images.ts
+
+```
+npx ts-node src/scripts/image-generation/generate-og-images.ts
 ```
 
 ## Notes

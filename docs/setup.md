@@ -23,8 +23,8 @@ npm run dev
 npm run build
 ```
 
-npx ts-node src/scripts/generate-og-images.ts
-npx ts-node src/scripts/generate-preview-images.ts
+npx ts-node src/scripts/image-generation/generate-og-images.ts
+npx ts-node src/scripts/image-generation/generate-preview-images.ts
 
 This will also generate Open Graph (OG) and preview images for all episodes using Puppeteer and your HTML templates. See:
 

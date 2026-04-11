@@ -6,10 +6,13 @@ import matter from 'gray-matter';
 const EPISODES_DIR = path.join(process.cwd(), 'src/content/episodes');
 const TEMPLATE_PATH = path.join(
   process.cwd(),
-  'src/scripts/social-image-template.html',
+  'src/scripts/image-generation/preview-image-template.html',
 );
-const BG_PATH = path.join(process.cwd(), 'src/scripts/og-background.png');
-const OUTPUT_DIR = path.join(process.cwd(), 'public/generated_social_images');
+const BG_PATH = path.join(
+  process.cwd(),
+  'src/scripts/image-generation/preview-background.png',
+);
+const OUTPUT_DIR = path.join(process.cwd(), 'public/generated_preview_images');
 
 async function getEpisodes() {
   const files = fs.readdirSync(EPISODES_DIR).filter(f => f.endsWith('.md'));
@@ -31,10 +34,10 @@ function fillTemplate(
     .replaceAll('%%EPISODE_NUMBER%%', episodeNumber)
     .replaceAll('%%TITLE%%', title)
     .replaceAll('%%SITE_URL%%', siteUrl)
-    .replaceAll('%%OG_BG%%', bgPath);
+    .replaceAll('%%PREVIEW_BG%%', bgPath);
 }
 
-async function generateOGImages() {
+async function generatePreviewImages() {
   if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   const episodes = await getEpisodes();
   const browser = await puppeteer.launch({
@@ -48,7 +51,7 @@ async function generateOGImages() {
     const outFile = `${episode.id}.png`;
     const outPath = path.join(OUTPUT_DIR, outFile);
     if (fs.existsSync(outPath)) {
-      console.log(`OG image for ${outFile} already exists, skipping.`);
+      console.log(`Preview image for ${outFile} already exists, skipping.`);
       continue;
     }
     let episodeNumber = '';
@@ -65,7 +68,7 @@ async function generateOGImages() {
     const bgBase64 = `data:${mimeType};base64,${bgBuffer.toString('base64')}`;
     // Replace the background url in the template with an <img> tag for reliability
     html = html
-      .replace("background: url('%%OG_BG%%') no-repeat center center;", '')
+      .replace("background: url('%%PREVIEW_BG%%') no-repeat center center;", '')
       .replace(
         '<div class="container">',
         `<div class="container"><img src="${bgBase64}" style="position:absolute;width:100%;height:100%;object-fit:cover;z-index:0;" />`,
@@ -78,21 +81,20 @@ async function generateOGImages() {
       bgPath: '', // Not used anymore
     });
     // Debug log
-    console.log(`Generating OG: ${outFile}`);
+    console.log(`Generating preview: ${outFile}`);
     const page = await browser.newPage();
-    await page.setViewport({ width: 1200, height: 630 });
+    await page.setViewport({ width: 600, height: 600 });
     await page.setContent(html, { waitUntil: 'networkidle0' });
     await page.screenshot({
       path: outPath,
       type: 'png',
-      clip: { x: 0, y: 0, width: 1200, height: 630 },
+      clip: { x: 0, y: 0, width: 600, height: 600 },
     });
     await page.close();
     console.log(`${outFile}`);
   }
   await browser.close();
-  console.log('All OG images generated.');
+  console.log('All preview images generated.');
 }
 
-generateOGImages();
-generateOGImages();
+generatePreviewImages();

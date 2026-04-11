@@ -5,11 +5,11 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && ts-node src/scripts/generate-og-images.ts && ts-node src/scripts/generate-preview-images.ts",
+    "build": "astro build && ts-node src/scripts/image-generation/generate-og-images.ts && ts-node src/scripts/image-generation/generate-preview-images.ts",
     "preview": "astro preview",
     "astro": "astro",
-    "generate:og": "ts-node src/scripts/generate-og-images.ts",
-    "generate:preview": "ts-node src/scripts/generate-preview-images.ts"
+    "generate:og": "ts-node src/scripts/image-generation/generate-og-images.ts",
+    "generate:preview": "ts-node src/scripts/image-generation/generate-preview-images.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",

@@ -2,9 +2,9 @@
 
 This script generates square preview images for all podcast episodes using Puppeteer and a custom HTML template.
 
-- **Script:** `src/scripts/generate-preview-images.ts`
-- **Template:** `src/scripts/preview-image-template.html`
-- **Background:** `src/scripts/preview-background.png`
+- **Script:** `src/scripts/image-generation/generate-preview-images.ts`
+- **Template:** `src/scripts/image-generation/preview-image-template.html`
+- **Background:** `src/scripts/image-generation/preview-background.png`
 - **Output:** `public/generated_preview_images/` (600x600 PNG)
 
 ## How It Works
@@ -25,8 +25,10 @@ npm run build
 
 Or manually:
 
-```
 npx ts-node src/scripts/generate-preview-images.ts
+
+```
+npx ts-node src/scripts/image-generation/generate-preview-images.ts
 ```
 
 ## Notes
