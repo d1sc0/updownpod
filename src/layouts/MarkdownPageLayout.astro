@@ -1,0 +1,13 @@
+---
+import BaseLayout from './BaseLayout.astro';
+const { frontmatter, pageMeta } = Astro.props;
+---
+
+<BaseLayout pageMeta={pageMeta}>
+  <section class="markdown-page content-padding">
+    <h2>{frontmatter?.title}</h2>
+    <div class="markdown-body">
+      <slot />
+    </div>
+  </section>
+</BaseLayout>

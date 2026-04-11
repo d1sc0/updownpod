@@ -15,4 +15,14 @@ const episodes = defineCollection({
   }),
 });
 
-export const collections = { episodes };
+const pages = defineCollection({
+  loader: glob({ base: './src/content/pages', pattern: '**/*.md' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    description: z.string().optional(),
+    body: z.string().optional(),
+  }),
+});
+
+export const collections = { episodes, pages };
