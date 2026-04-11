@@ -1,5 +1,5 @@
 ---
-const { data, url } = Astro.props;
+const { data } = Astro.props;
 const dateOptions: object = {
   year: 'numeric',
   month: 'long',
@@ -29,10 +29,10 @@ const uniqueId = `audio-player-${Math.random().toString(36).substr(2, 9)}`;
       />
     </div>
     <div class="audio-info">
-      <h3><a href={url}>{data.title}</a></h3>
+      <h3><a href={`/episodes/${data.slug}`}>{data.title}</a></h3>
       <p class="episode-date">{formattedPublishDate}</p>
       <p class="episode-excerpt">{data.description}</p>
-      <p><a href={url}>read show notes...</a></p>
+      <p><a href={`/episodes/${data.slug}`}>read show notes...</a></p>
     </div>
   </div>
   <div class="audio-controls">

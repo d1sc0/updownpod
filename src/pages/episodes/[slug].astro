@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import MarkdownEpisodeLayout from '../../layouts/MarkdownEpisodeLayout.astro';
 
 export async function getStaticPaths() {
@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   const episodeCount = episodes.length;
 
   return episodes.map((entry, index) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: {
       entry,
       nextepisode: index + 1 !== episodeCount ? episodes[index + 1] : null,
@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 }
 
 const { entry, prevepisode, nextepisode } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <MarkdownEpisodeLayout

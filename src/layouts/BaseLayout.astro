@@ -22,7 +22,7 @@ const { frontmatter, pageMeta, prevepisode, nextepisode } = Astro.props;
         {
           prevepisode && (
             <div class="prevNav">
-              <a href={`/episodes/${prevepisode.slug}/`}>
+              <a href={`/episodes/${prevepisode.id}/`}>
                 &lt&lt {prevepisode.data.title}
               </a>
             </div>
@@ -33,7 +33,7 @@ const { frontmatter, pageMeta, prevepisode, nextepisode } = Astro.props;
         {
           nextepisode && (
             <div class="nextNav">
-              <a href={`/episodes/${nextepisode.slug}/`}>
+              <a href={`/episodes/${nextepisode.id}/`}>
                 {nextepisode.data.title} &gt&gt
               </a>
             </div>

@@ -49,7 +49,7 @@ const uniqueId = `audio-player-${Math.random().toString(36).substr(2, 9)}`;
               <p class="episode-date">{formattedPublishDate}</p>
               <p class="episode-excerpt">{latestEpisode.data.description}</p>
               <p>
-                <a href={`/episodes/${latestEpisode.slug}`}>
+                <a href={`/episodes/${latestEpisode.data.slug}`}>
                   read show notes...
                 </a>
               </p>
