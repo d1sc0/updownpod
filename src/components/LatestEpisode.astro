@@ -2,6 +2,21 @@
 import { getCollection } from 'astro:content';
 import '../styles/latest-episode.css';
 import { Icon } from 'astro-icon/components';
+import { readFile } from 'fs/promises';
+import yaml from 'js-yaml';
+
+let subscribeLinks = [];
+try {
+  const subscribeYaml = await readFile(
+    new URL('../content/subscribe-links.yaml', import.meta.url),
+    'utf8',
+  );
+  subscribeLinks = yaml.load(subscribeYaml) || [];
+} catch (e) {
+  console.error('Failed to load subscribe-links.yaml', e);
+  subscribeLinks = [];
+}
+
 const allEpisodes = await getCollection('episodes', ({ data }) => {
   return import.meta.env.PROD ? data.draft !== true : true;
 });
@@ -129,52 +144,14 @@ const uniqueId = `audio-player-${Math.random().toString(36).substr(2, 9)}`;
     </section>
     <section class="subscribe-links">
         <ul class="subscribe-platforms">
-          <li>
-            <a
-              href="https://podcasts.apple.com/podcast/upstairs-downstairs-podcast/idYOUR_APPLE_ID"
-              target="_blank"
-              rel="noopener"
-            >
-              <Icon name="apple" size="35" />
-              Apple Podcasts
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://open.spotify.com/show/YOUR_SPOTIFY_ID"
-              target="_blank"
-              rel="noopener"
-            >
-              <Icon name="spotify" size="35" />
-              Spotify
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://podcasts.google.com/feed/YOUR_FEED_URL"
-              target="_blank"
-              rel="noopener"
-            >
-              <Icon name="google" size="35" />
-              Google Podcasts
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://music.amazon.com/podcasts/YOUR_AMAZON_ID"
-              target="_blank"
-              rel="noopener"
-            >
-              <Icon name="amazon" size="35" />
-              Amazon Music
-            </a>
-          </li>
-          <li>
-            <a href="/rss.xml" target="_blank" rel="noopener">
-              <Icon name="rss" size="35" />
-              RSS Feed
-            </a>
-          </li>
+          {subscribeLinks.map(link => (
+            <li>
+              <a href={link.url} target="_blank" rel="noopener">
+                <Icon name={link.icon} size="35" />
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </section>
   )

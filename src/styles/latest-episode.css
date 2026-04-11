@@ -59,6 +59,13 @@ section.latest-episode-player {
   margin-bottom: 1rem;
 }
 
+.audio-info h3 {
+  margin: 0;
+  color: var(--graphite);
+  font-family: var(--Jersey15), sans-serif;
+  font-size: 2rem;
+}
+
 .audio-info {
   margin-bottom: 0.75rem;
   margin-right: 0.75rem;

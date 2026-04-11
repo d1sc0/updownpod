@@ -1,0 +1,15 @@
+- label: Apple Podcasts
+  url: https://podcasts.apple.com/podcast/upstairs-downstairs-podcast/idYOUR_APPLE_ID
+  icon: apple
+- label: Spotify
+  url: https://open.spotify.com/show/YOUR_SPOTIFY_ID
+  icon: spotify
+- label: Google Podcasts
+  url: https://podcasts.google.com/feed/YOUR_FEED_URL
+  icon: google
+- label: Amazon Music
+  url: https://music.amazon.com/podcasts/YOUR_AMAZON_ID
+  icon: amazon
+- label: RSS Feed
+  url: /rss.xml
+  icon: rss
