@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <title>OG Image</title>
+ <style>
+  body {
+   margin: 0;
+   font-family: 'Jersey 15', 'Bungee', 'Impact', 'Arial Black', sans-serif;
+   position: relative;
+   overflow: hidden;
+  }
+
+  .container {
+   background: url('%%OG_BG%%'), url('/scripts/og-background.png') no-repeat center center;
+   background-size: cover;
+   width: 1200px;
+   height: 630px;
+   position: relative;
+  }
+
+  .site-title {
+   position: absolute;
+   width: 1200px;
+   text-align: center;
+   top: 107px;
+   font-family: 'Jersey 15', 'Bungee', 'Impact', 'Arial Black', sans-serif;
+   font-size: 3.2rem;
+   color: #2b2b2b;
+   text-transform: uppercase;
+   font-weight: 700;
+   letter-spacing: 1px;
+  }
+
+  .site-url {
+   position: absolute;
+   width: 1200px;
+   bottom: 102px;
+   font-family: 'Helvetica Neue', 'Avenir Next', 'Segoe UI', sans-serif;
+   font-size: 1.6rem;
+   color: #424243;
+   font-weight: 400;
+   text-transform: uppercase;
+   text-align: center;
+   letter-spacing: 1px;
+  }
+
+  .episode-number {
+   position: absolute;
+   width: 1200px;
+   text-align: center;
+   top: 245px;
+   font-family: 'Jersey 15', 'Bungee', 'Impact', 'Arial Black', sans-serif;
+   font-size: 2.8rem;
+   color: #015eff;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+  }
+
+  .title {
+   position: absolute;
+   width: 1200px;
+   text-align: center;
+   text-transform: uppercase;
+   top: 320px;
+   font-family: 'Jersey 15', 'Bungee', 'Impact', 'Arial Black', sans-serif;
+   font-size: 5rem;
+   font-weight: 800;
+   color: #015eff;
+   line-height: 1.1;
+   word-break: break-word;
+  }
+ </style>
+</head>
+
+<body>
+ <div class="container">
+  <div class="site-title" id="site-title">%%SITE_TITLE%%</div>
+  <div class="episode-number" id="episode-number">%%EPISODE_NUMBER%%</div>
+  <div class="title" id="title">%%TITLE%%</div>
+  <div class="site-url" id="site-url">%%SITE_URL%%</div>
+ </div>
+</body>
+
+</html>

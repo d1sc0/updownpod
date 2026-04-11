@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <title>Preview Image</title>
+ <style>
+  body {
+   margin: 0;
+   font-family: 'Jersey 15', 'Bungee', 'Impact', 'Arial Black', sans-serif;
+   position: relative;
+   overflow: hidden;
+  }
+
+  .container {
+   background: url('%%PREVIEW_BG%%'), url('/scripts/preview-background.png') no-repeat center center;
+   background-size: cover;
+   width: 600px;
+   height: 600px;
+   position: relative;
+  }
+
+  .site-title {
+   position: absolute;
+   width: 600px;
+   text-align: center;
+   top: 110px;
+   font-family: 'Jersey 15', 'Bungee', 'Impact', 'Arial Black', sans-serif;
+   font-size: 2.0rem;
+   color: #2b2b2b;
+   text-transform: uppercase;
+   font-weight: 700;
+   letter-spacing: 1px;
+  }
+
+  .site-url {
+   position: absolute;
+   width: 600px;
+   bottom: 102px;
+   font-family: 'Helvetica Neue', 'Avenir Next', 'Segoe UI', sans-serif;
+   font-size: 1.1rem;
+   color: #424243;
+   font-weight: 400;
+   text-transform: uppercase;
+   text-align: center;
+   letter-spacing: 1px;
+  }
+
+  .episode-number {
+   position: absolute;
+   left: 95px;
+   top: 245px;
+   font-family: 'Jersey 15', 'Bungee', 'Impact', 'Arial Black', sans-serif;
+   font-size: 2rem;
+   color: #015eff;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+  }
+
+  .title {
+   position: absolute;
+   width: 410px;
+   left: 95px;
+   top: 280px;
+   font-family: 'Jersey 15', 'Bungee', 'Impact', 'Arial Black', sans-serif;
+   font-size: 4.2rem;
+   color: #015eff;
+   font-weight: 700;
+   text-transform: uppercase;
+   line-height: 1.1;
+   word-break: break-word;
+  }
+ </style>
+</head>
+
+<body>
+ <div class="container">
+  <div class="site-title" id="site-title">%%SITE_TITLE%%</div>
+  <div class="episode-number" id="episode-number">%%EPISODE_NUMBER%%</div>
+  <div class="title" id="title">%%TITLE%%</div>
+  <div class="site-url" id="site-url">%%SITE_URL%%</div>
+ </div>
+</body>
+
+</html>

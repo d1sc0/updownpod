@@ -32,5 +32,3 @@ Friends and internet stalkers are welcome to join for any of these activities. A
 00:01 - Continue dancing?
 
 **No regrets. Simples.** ✌️
-
-![a kitchen selfie with me giving peace fingers wearing my lovely orange vaga hat](episode_images/new-plansFULL.jpg)
