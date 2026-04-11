@@ -1,3 +1,4 @@
+/* Styles for markdown posts/episode including player */
 .player-content-grid {
   display: grid;
   grid-template-columns: 45% 55%;
@@ -230,10 +231,11 @@ section.episode .episodeDate {
 .audio-info {
   margin-bottom: 0.75rem;
   margin-right: 0.75rem;
+  font-size: 1.1rem;
 }
 
 .track-title {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   font-weight: 700;
   line-height: 1.35;
   color: var(--graphite);

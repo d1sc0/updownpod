@@ -1,12 +1,9 @@
-/*  all the em measurements start from this setting
---------------------------------------------------------------------------------------- */
+/*  global styles to reset default values */
 
 html {
   font-size: 16px;
 }
 
-/*  global styles to reset default values
---------------------------------------------------------------------------------------- */
 *,
 *:before,
 *:after {
