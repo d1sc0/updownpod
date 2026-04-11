@@ -35,5 +35,4 @@ See the [docs/](docs/) folder for setup, CMS, image automation, and migration de
 ## To-do
 
 - [ ] Set up Firebase redirect for /podcast.xml
-- [ ] Configure Jam Comments API key
 - [ ] Update HeadSEO and pageMeta descriptions

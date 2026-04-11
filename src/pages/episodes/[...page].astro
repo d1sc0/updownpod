@@ -2,8 +2,7 @@
 import type { Page } from 'astro';
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import EpisodeGrid from '../../components/EpisodeGrid.astro';
-import Pagination from '../../components/Pagination.astro';
+import EpisodePreview from '../../components/EpisodePreview.astro';
 
 export async function getStaticPaths({ paginate }) {
   const episodes = await getCollection('episodes', ({ data }) => {
@@ -27,6 +26,39 @@ const pageMeta = {
 ---
 
 <BaseLayout pageMeta={pageMeta}>
-  <EpisodeGrid episodes={episodes} gridTitle={pageTitle} />
-  <Pagination pageData={page} />
+  <section class="episodegrid">
+    <h2 class="content-padding">{pageTitle}</h2>
+    <div class="grid content-padding">
+      {episodes.map(episode => <EpisodePreview data={episode.data} />)}
+    </div>
+  </section>
+  <section class="pagination">
+    <nav aria-label="Pagination">
+      <div class="content-padding">
+        {
+          page.url.prev && (
+            <a
+              href={page.url.prev}
+              aria-label={`Go to page ${page.currentPage - 1} of ${page.lastPage}`}
+            >
+              Prev
+            </a>
+          )
+        }
+        <span aria-current="page">
+          &nbsp;Page {page.currentPage} of {page.lastPage}&nbsp;
+        </span>
+        {
+          page.url.next && (
+            <a
+              href={page.url.next}
+              aria-label={`Go to page ${page.currentPage + 1} of ${page.lastPage}`}
+            >
+              Next
+            </a>
+          )
+        }
+      </div>
+    </nav>
+  </section>
 </BaseLayout>

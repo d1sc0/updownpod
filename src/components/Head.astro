@@ -1,9 +1,8 @@
 ---
 import { SEO } from 'astro-seo';
 const { frontmatter, pageMeta } = Astro.props;
-import Fonts from '../components/Fonts.astro';
-
-const siteURL = 'https://updownpod.com';
+import { AstroFont } from 'astro-font';
+const siteURL = Astro.site?.toString() || '';
 
 // Determine the slug/id for the OG image (prefer id, fallback to slug, fallback to url path)
 const urlPath = Astro.url?.pathname?.replace(/\/$/, '') || '';
@@ -22,11 +21,38 @@ const description = frontmatter?.description || pageMeta?.description || '';
 <head>
   <meta charset="utf-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <!--   <link rel="webmention" href="https://webmention.io/hellostu.xyz/webmention" />
-  <link rel="pingback" href="https://webmention.io/hellostu.xyz/xmlrpc" /> -->
   <meta name="viewport" content="width=device-width" />
   <meta name="generator" content={Astro.generator} />
-  <Fonts />
+  <AstroFont
+    config={[
+      {
+        src: [],
+        name: 'Manrope',
+        // Google Fonts URL
+        googleFontsURL:
+          'https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap',
+        preload: true,
+        display: 'swap',
+        selector: 'body',
+        fallback: 'sans-serif',
+      },
+    ]}
+  />
+  <AstroFont
+    config={[
+      {
+        src: [],
+        name: 'Jersey15',
+        // Google Fonts URL
+        googleFontsURL:
+          'https://fonts.googleapis.com/css2?family=Jersey+15&display=swap',
+        preload: true,
+        display: 'swap',
+        cssVariable: 'Jersey15',
+        fallback: 'sans-serif',
+      },
+    ]}
+  />
   <SEO
     title={title}
     description={description}

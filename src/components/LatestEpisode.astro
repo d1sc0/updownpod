@@ -1,12 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
-import SubscribeLinks from './SubscribeLinks.astro';
 const allEpisodes = await getCollection('episodes', ({ data }) => {
   return import.meta.env.PROD ? data.draft !== true : true;
 });
-allEpisodes.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const latestEpisode = allEpisodes[0];
+const latestEpisode = allEpisodes.reduce(
+  (latest, ep) =>
+    new Date(ep.data.pubDate) > new Date(latest.data.pubDate) ? ep : latest,
+  allEpisodes[0],
+);
 
 if (!latestEpisode) {
   // Handle case where no episodes exist

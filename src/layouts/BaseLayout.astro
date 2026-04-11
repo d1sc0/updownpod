@@ -1,17 +1,16 @@
 ---
-import HeadSEO from '../components/HeadSEO.astro';
-import Header from '../components/Header.astro';
+import Head from '../components/Head.astro';
+import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
-import PageScripts from '../components/PageScripts.astro';
 import '../styles/global.css';
 const { frontmatter, pageMeta, prevepisode, nextepisode } = Astro.props;
 ---
 
 <html lang="en">
-  <HeadSEO frontmatter={frontmatter} pageMeta={pageMeta} />
+  <Head frontmatter={frontmatter} pageMeta={pageMeta} />
   <body>
     <div class="container">
-      <Header />
+      <Navigation />
       <main>
         <slot />
         <p class="toplink content-padding">
@@ -41,7 +40,10 @@ const { frontmatter, pageMeta, prevepisode, nextepisode } = Astro.props;
         }
       </section>
       <Footer />
-      <PageScripts />
+      <script>
+        import '../scripts/menu.js';
+        import '../scripts/audio-controls.js';
+      </script>
     </div>
   </body>
 </html>
