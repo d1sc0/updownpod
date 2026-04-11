@@ -15,3 +15,5 @@ I used [Trello](https://trello.com/) to archive finished tasks and checked a sho
 - Archived done tasks and cleared inboxes
 - Picked three priorities for next week
 - Set up one non-negotiable recovery block
+
+![lady taking photo](../../assets/uploaded_images/pexels-anna-holodna-36944403FULL.jpg)
