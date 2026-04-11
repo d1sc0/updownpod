@@ -16,6 +16,6 @@ The route came from [Strava](https://www.strava.com/) ideas nearby, and I ended 
 - Ten minute planning sprint at the cafe
 - Zero doom-scrolling before noon
 
-![person taking a photograph](/src/assets/pexels-anna-holodna-36944403.jpg)
+![person taking a photograph](/src/assets/pexels-anna-holodna-36944403FULL.jpg)
 
 [Photo by Anna Holodna on Pexels](https://www.pexels.com/photo/black-and-white-portrait-of-woman-with-camera-36944403/)
