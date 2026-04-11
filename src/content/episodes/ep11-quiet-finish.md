@@ -16,4 +16,4 @@ I used [Trello](https://trello.com/) to archive finished tasks and checked a sho
 - Picked three priorities for next week
 - Set up one non-negotiable recovery block
 
-![](../../assets/episode_images/5225905261_bf2f6ae911_b.jpg)
+![](/src/assets/episode_images/src/assets/episode_images/5225905261_bf2f6ae911_b_FULL.jpg)
