@@ -14,16 +14,15 @@ A modern Astro v6 site for the Upstairs Downstairs podcast, featuring:
    npm install
    ```
 2. Start the dev server:
+
    ```
    npm run dev
    ```
+
 3. To generate OG and preview images (after adding or editing episodes):
-   ```
-   npm run build
-   # or run manually:
-   npx ts-node src/scripts/generate-og-images.ts
-   npx ts-node src/scripts/generate-preview-images.ts
-   ```
+   - OG images: see [docs/og-image-generation.md](docs/og-image-generation.md)
+   - Preview images: see [docs/preview-image-generation.md](docs/preview-image-generation.md)
+   - Both are run automatically with `npm run build`, or can be run manually as described in the docs.
 
 ## Requirements
 
