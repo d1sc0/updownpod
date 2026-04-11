@@ -1,0 +1,24 @@
+- label: LinkedIn
+  url: https://uk.linkedin.com/in/stuartjmackenzie/
+  icon: linkedin
+  aria: link to linked.in profile
+- label: Strava
+  url: https://www.strava.com/athletes/1170885/
+  icon: strava
+  aria: link to strava profile
+- label: Threads
+  url: https://www.threads.net/@_d1sco
+  icon: threads
+  aria: link to threads
+- label: GitHub
+  url: https://github.com/d1sc0/
+  icon: github
+  aria: link to github profile
+- label: Instagram
+  url: https://www.instagram.com/_d1sco/
+  icon: instagram
+  aria: link to instagram profile
+- label: Bluesky
+  url: https://bsky.app/profile/hellostu.xyz
+  icon: bluesky
+  aria: link to bluesky profile
