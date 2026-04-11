@@ -15,5 +15,3 @@ The route came from [Strava](https://www.strava.com/) ideas nearby, and I ended 
 - One mile at an easy pace
 - Ten minute planning sprint at the cafe
 - Zero doom-scrolling before noon
-
-[Photo by Anna Holodna on Pexels](https://www.pexels.com/photo/black-and-white-portrait-of-woman-with-camera-36944403/)

@@ -16,4 +16,4 @@ While there, I revisited [Austin Kleon's blog](https://austinkleon.com/) and an 
 - Outlined two short episode concepts
 - Planned tomorrow's priority before leaving
 
-![clown](../../assets/pexels-cris-ramos-30257362_RIGHT.jpg) [Photo by Cris Ramos on Pexels](https://www.pexels.com/photo/colorful-clown-in-playful-child-s-room-30257362/)
+![clown](../../assets/uploaded_images/pexels-cris-ramos-30257362_RIGHT.jpg) [Photo by Cris Ramos on Pexels](https://www.pexels.com/photo/colorful-clown-in-playful-child-s-room-30257362/)
