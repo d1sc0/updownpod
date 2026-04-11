@@ -1,0 +1,138 @@
+section.episode {
+  margin-bottom: 6rem;
+}
+
+section.episode .episodeDate {
+  margin-top: 0.2rem;
+  display: inline-block;
+  background-color: none;
+  margin-right: 15px;
+  margin-bottom: 25px;
+  padding: 3px;
+  padding-left: 11px;
+  padding-right: 11px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+section.episode img[src*='FULL'] {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0rem;
+  border-radius: 0.3rem;
+}
+
+.imageLeft,
+section.episode img[src*='RIGHT'] {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+}
+
+.imageRight,
+section.episode img[src*='LEFT'] {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+}
+
+/* Audio Player Styles (relevant for episode layout) */
+.custom-audio-player {
+  background-color: var(--white);
+  border: 2px solid var(--graphite);
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.audio-info {
+  margin-bottom: 0.75rem;
+  margin-right: 0.75rem;
+}
+
+.track-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--graphite);
+  word-break: break-word;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.play-btn {
+  background: var(--green-yellow);
+  border: 2px solid var(--graphite);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*  Media styling */
+
+.vidcontainer169 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%;
+
+  /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+
+.vidcontainer43 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 75%;
+  /* 4:3 Aspect Ratio */
+}
+
+.vidcontainer32 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 66.66%;
+  /* 3:2 Aspect Ratio */
+}
+
+.vidcontainer85 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 62.5%;
+  /* 8:5 Aspect Ratio */
+}
+
+.vidcontainer11 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 100%;
+  /* 1:1 Aspect Ratio */
+}
+
+.responsive-vid-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}

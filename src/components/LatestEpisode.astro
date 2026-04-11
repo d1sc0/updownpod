@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import '../styles/latest-episode.css';
 const allEpisodes = await getCollection('episodes', ({ data }) => {
   return import.meta.env.PROD ? data.draft !== true : true;
 });
@@ -124,7 +125,66 @@ const uniqueId = `audio-player-${Math.random().toString(36).substr(2, 9)}`;
           </div>
         </div>
       </div>
-      <div class="episode-info-section" />
     </section>
+    <section class="subscribe-links">
+        <ul class="subscribe-platforms">
+          <li>
+            <a
+              href="https://podcasts.apple.com/podcast/upstairs-downstairs-podcast/idYOUR_APPLE_ID"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg width="35" height="35">
+                <use href="#icon-apple" />
+              </svg>
+              Apple Podcasts
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://open.spotify.com/show/YOUR_SPOTIFY_ID"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg width="35" height="35">
+                <use href="#icon-spotify" />
+              </svg>
+              Spotify
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://podcasts.google.com/feed/YOUR_FEED_URL"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg width="35" height="35">
+                <use href="#icon-google" />
+              </svg>
+              Google Podcasts
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://music.amazon.com/podcasts/YOUR_AMAZON_ID"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg width="35" height="35">
+                <use href="#icon-amazon" />
+              </svg>
+              Amazon Music
+            </a>
+          </li>
+          <li>
+            <a href="/rss.xml" target="_blank" rel="noopener">
+              <svg width="35" height="35">
+                <use href="#icon-rss" />
+              </svg>
+              RSS Feed
+            </a>
+          </li>
+        </ul>
+      </section>
   )
 }

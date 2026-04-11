@@ -1,0 +1,28 @@
+.container {
+  padding: 0.5rem;
+}
+
+.content-padding {
+  padding-top: 1rem;
+  padding-left: 1.1rem;
+  padding-right: 1.1rem;
+}
+
+.episodeNav {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.nextNav,
+.prevNav {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+p.toplink {
+  text-align: center;
+}

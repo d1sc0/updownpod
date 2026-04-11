@@ -1,0 +1,64 @@
+/* Episode list and episode page styles */
+
+section.episodegrid .grid {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  grid-gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+section article {
+  border: 1px solid var(--graphite);
+  padding: 1rem;
+  box-shadow: 5px 8px;
+  border-radius: 0.3rem;
+  background-color: var(--white);
+}
+
+section article img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  max-height: 100%;
+  object-fit: cover;
+  border: 1px solid var(--graphite);
+}
+
+section.episodegrid .grid article {
+  background-color: var(--white);
+}
+
+section.episodegrid article {
+  box-shadow: none;
+}
+
+section.pagination {
+  padding-bottom: 2rem;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.episodeNav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.nextNav,
+.prevNav {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  height: 6rem;
+  border: 1px solid var(--graphite);
+  box-shadow: 5px 8px;
+  border-radius: 0.3rem;
+  background-color: var(--blush-pop);
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+}

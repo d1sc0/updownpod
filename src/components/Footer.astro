@@ -1,11 +1,15 @@
 ---
+import '../styles/footer.css';
 import { Icon } from 'astro-icon/components';
 import { readFile } from 'fs/promises';
 import yaml from 'js-yaml';
 
 let footerLinks = [];
 try {
-  const linksYaml = await readFile(new URL('../content/footer-links.yaml', import.meta.url), 'utf8');
+  const linksYaml = await readFile(
+    new URL('../content/footer-links.yaml', import.meta.url),
+    'utf8',
+  );
   footerLinks = yaml.load(linksYaml);
 } catch (e) {
   console.error('Failed to load footer-links.yaml', e);
@@ -20,13 +24,18 @@ try {
         >Creative Commons License CC-BY-CN-SA</a
       > by Stuart Mackenzie
     </p>
-    {Array.isArray(footerLinks) && footerLinks.map(link => (
-      <a
-        href={link.url}
-        class="social-icon"
-        rel="me"
-        aria-label={link.aria}
-        ><Icon name={link.icon} /></a>
-    ))}
+    {
+      Array.isArray(footerLinks) &&
+        footerLinks.map(link => (
+          <a
+            href={link.url}
+            class="social-icon"
+            rel="me"
+            aria-label={link.aria}
+          >
+            <Icon name={link.icon} />
+          </a>
+        ))
+    }
   </section>
 </footer>

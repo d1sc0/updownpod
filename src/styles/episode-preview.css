@@ -1,0 +1,366 @@
+/* EpisodePreview component-scoped styles */
+/* Main entry card for episode preview */
+.episode-preview-entry {
+  background-color: var(--white);
+  border: 2px solid var(--graphite);
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.episode-preview-entry h3 {
+  margin: 0;
+  color: var(--graphite);
+  font-family: var(--Jersey15), sans-serif;
+  font-size: 2rem;
+}
+.episode-preview-entry h3 a {
+  text-decoration: none;
+}
+
+.player-content-grid {
+  display: grid;
+  grid-template-columns: 25% 75%;
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.player-content-grid .episode-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 2px dashed var(--graphite);
+}
+
+.audio-info {
+  margin-bottom: 0.75rem;
+  margin-right: 0.75rem;
+}
+
+@media (max-width: 767px) {
+  .player-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.player-content-grid .audio-info {
+  margin-bottom: 0;
+}
+
+.track-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--graphite);
+  word-break: break-word;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.play-btn {
+  background: var(--green-yellow);
+  border: 2px solid var(--graphite);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.play-btn:hover {
+  background: var(--blush-pop);
+  transform: translate(-1px, -1px);
+}
+
+.play-btn.playing {
+  background: var(--blush-pop);
+  border-style: dashed;
+  animation: rotate 3.125s linear infinite;
+}
+
+.play-btn.playing svg {
+  animation: counter-rotate 3.125s linear infinite;
+}
+
+@keyframes counter-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.play-btn.playing svg path {
+  d: path('M6 19h4V5H6v14zm8-14v14h4V5h-4z'); /* Pause symbol */
+}
+
+.play-btn.paused {
+  background: var(--blush-pop);
+  border-style: dashed;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.play-btn:active {
+  transform: translate(1px, 1px);
+}
+
+.progress-container {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.progress-time-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: var(--cream);
+  border: 1px solid var(--graphite);
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--full-spec-blue);
+  border-radius: 4px;
+  width: 0%;
+  transition: width 0.1s ease;
+}
+
+.progress-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  background: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+}
+
+.progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--graphite);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.progress-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--graphite);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.time-display {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--graphite);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.episode-image-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 1rem 0;
+  min-height: 0; /* Allow flex item to shrink */
+}
+
+#audio-element {
+  display: none;
+}
+
+.audio-info {
+  margin-bottom: 0.75rem;
+  margin-right: 0.75rem;
+}
+
+.track-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--graphite);
+  word-break: break-word;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.play-btn {
+  background: var(--green-yellow);
+  border: 2px solid var(--graphite);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.play-btn:hover {
+  background: var(--blush-pop);
+  transform: translate(-1px, -1px);
+}
+
+.play-btn.playing {
+  background: var(--blush-pop);
+  border-style: dashed;
+  animation: rotate 3.125s linear infinite;
+}
+
+.play-btn.playing svg {
+  animation: counter-rotate 3.125s linear infinite;
+}
+
+@keyframes counter-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.play-btn.playing svg path {
+  d: path('M6 19h4V5H6v14zm8-14v14h4V5h-4z'); /* Pause symbol */
+}
+
+.play-btn.paused {
+  background: var(--blush-pop);
+  border-style: dashed;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.play-btn:active {
+  transform: translate(1px, 1px);
+}
+
+.progress-container {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.progress-time-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: var(--cream);
+  border: 1px solid var(--graphite);
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--full-spec-blue);
+  border-radius: 4px;
+  width: 0%;
+  transition: width 0.1s ease;
+}
+
+.progress-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  background: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+}
+
+.progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--graphite);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.progress-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--graphite);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.time-display {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--graphite);
+  text-align: center;
+  white-space: nowrap;
+}
+
+#audio-element {
+  display: none;
+}

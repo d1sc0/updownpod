@@ -1,0 +1,33 @@
+/* Footer component-scoped styles */
+.footer {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.footer .social-icon {
+  font-size: 1.5rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  color: var(--graphite);
+  transition: color 0.2s;
+}
+
+.footer .social-icon:hover {
+  color: var(--full-spec-blue);
+}
+
+.footer a {
+  text-decoration: none;
+  color: var(--graphite);
+  transition: color 0.2s;
+}
+
+.footer a:hover {
+  color: var(--full-spec-blue);
+}
+
+.footer p {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: var(--graphite);
+}

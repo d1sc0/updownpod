@@ -1,6 +1,8 @@
 ---
+import '../styles/navigation.css';
 import { readFile } from 'fs/promises';
 import yaml from 'js-yaml';
+
 let navLinks = [];
 try {
   const navYaml = await readFile(

@@ -1,0 +1,26 @@
+section.home {
+  margin-bottom: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'player'
+    'subscribe';
+  grid-gap: 2rem;
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+  section.home {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 3fr 2fr;
+    grid-template-areas: 'player subscribe';
+    grid-gap: 2rem;
+  }
+  section.latest-episode-player {
+    grid-area: player;
+  }
+  section.subscribe-links {
+    grid-area: subscribe;
+  }
+}

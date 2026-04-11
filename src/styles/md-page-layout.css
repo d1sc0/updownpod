@@ -1,0 +1,18 @@
+.page {
+  margin-bottom: 4rem;
+  margin-top: 2rem;
+}
+
+.markdown-body {
+}
+
+.page h2 {
+  font-family: var(--Jersey15), sans-serif;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .markdown-body {
+  }
+}
