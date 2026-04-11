@@ -3,7 +3,6 @@ backend:
   branch: main
   repo: d1sc0/updownpod
 
-media_folder: 'src/assets'
 publish_mode: editorial_workflow
 
 collections:
