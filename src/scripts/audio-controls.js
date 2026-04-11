@@ -1,6 +1,8 @@
 // Initialize audio players for all instances on the page
 document.addEventListener('DOMContentLoaded', function () {
-  const players = document.querySelectorAll('.custom-audio-player');
+  const players = document.querySelectorAll(
+    '.custom-audio-player, .episode-preview-entry',
+  );
 
   players.forEach(player => {
     const playerId = player.getAttribute('data-player-id');
