@@ -2,20 +2,7 @@
 import { getCollection } from 'astro:content';
 import '../styles/latest-episode.css';
 import { Icon } from 'astro-icon/components';
-import { readFile } from 'fs/promises';
-import yaml from 'js-yaml';
-
-let subscribeLinks = [];
-try {
-  const subscribeYaml = await readFile(
-    new URL('../content/subscribe-links.yaml', import.meta.url),
-    'utf8',
-  );
-  subscribeLinks = yaml.load(subscribeYaml) || [];
-} catch (e) {
-  console.error('Failed to load subscribe-links.yaml', e);
-  subscribeLinks = [];
-}
+import subscribeLinks from '../content/subscribe-links.json';
 
 const allEpisodes = await getCollection('episodes', ({ data }) => {
   return import.meta.env.PROD ? data.draft !== true : true;

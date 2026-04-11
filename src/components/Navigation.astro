@@ -1,18 +1,6 @@
 ---
 import '../styles/navigation.css';
-import { readFile } from 'fs/promises';
-import yaml from 'js-yaml';
-
-let navLinks = [];
-try {
-  const navYaml = await readFile(
-    new URL('../content/navigation.yaml', import.meta.url),
-    'utf8',
-  );
-  navLinks = yaml.load(navYaml);
-} catch (e) {
-  console.error('Failed to load navigation.yaml', e);
-}
+import navLinks from '../content/navigation.json';
 ---
 
 <header id="top">

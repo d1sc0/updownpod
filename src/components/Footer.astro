@@ -1,19 +1,7 @@
 ---
 import '../styles/footer.css';
 import { Icon } from 'astro-icon/components';
-import { readFile } from 'fs/promises';
-import yaml from 'js-yaml';
-
-let footerLinks = [];
-try {
-  const linksYaml = await readFile(
-    new URL('../content/footer-links.yaml', import.meta.url),
-    'utf8',
-  );
-  footerLinks = yaml.load(linksYaml);
-} catch (e) {
-  console.error('Failed to load footer-links.yaml', e);
-}
+import footerLinks from '../content/footer-links.json';
 ---
 
 <footer id="footer">

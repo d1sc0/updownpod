@@ -42,7 +42,7 @@ collections:
   - name: 'navigation'
     label: 'Main Site Menu'
     files:
-      - file: 'src/content/navigation.yaml'
+      - file: 'src/content/navigation.json'
         label: 'Main Site Menu'
         name: 'main_menu'
         fields:
@@ -55,7 +55,7 @@ collections:
   - name: 'footer_socials'
     label: 'Footer Socials'
     files:
-      - file: 'src/content/footer-links.yaml'
+      - file: 'src/content/footer-links.json'
         label: 'Footer Social Links'
         name: 'footer_links'
         fields:
@@ -70,7 +70,7 @@ collections:
   - name: 'subscribe_links'
     label: 'Podcast Subscribe Links'
     files:
-      - file: 'src/content/subscribe-links.yaml'
+      - file: 'src/content/subscribe-links.json'
         label: 'Podcast Subscribe Links'
         name: 'subscribe_links_file'
         fields:
