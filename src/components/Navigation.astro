@@ -1,5 +1,16 @@
 ---
-
+import { readFile } from 'fs/promises';
+import yaml from 'js-yaml';
+let navLinks = [];
+try {
+  const navYaml = await readFile(
+    new URL('../content/navigation.yaml', import.meta.url),
+    'utf8',
+  );
+  navLinks = yaml.load(navYaml);
+} catch (e) {
+  console.error('Failed to load navigation.yaml', e);
+}
 ---
 
 <header id="top">
@@ -37,12 +48,17 @@
       aria-label="main menu"
     >
       <ul>
-        <li><a href="/about">About</a></li>
-        <li><a href="/episodes">Episodes</a></li>
-        <li><a href="#">iTunes</a></li>
-        <li><a href="#">Spotify</a></li>
-        <!-- <li><a href="https://photos.hellostu.xyz">Photos</a></li> -->
-        <li><a href="/rss.xml">RSS</a></li>
+        {
+          Array.isArray(navLinks) &&
+            navLinks.map(
+              link =>
+                !link.label?.startsWith('#') && (
+                  <li>
+                    <a href={link.url}>{link.label}</a>
+                  </li>
+                ),
+            )
+        }
       </ul>
     </div>
   </nav>

@@ -39,5 +39,18 @@ collections:
       - { label: 'Description', name: 'description', widget: 'text' }
       - { label: 'Slug', name: 'slug', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+  - name: 'navigation'
+    label: 'Main Site Menu'
+    files:
+      - file: 'src/content/navigation.yaml'
+        label: 'Main Site Menu'
+        name: 'main_menu'
+        fields:
+          - label: 'Links'
+            name: 'links'
+            widget: 'list'
+            fields:
+              - { label: 'Label', name: 'label', widget: 'string' }
+              - { label: 'URL', name: 'url', widget: 'string' }
 # Sveltia CMS configuration file
 # See: https://github.com/sveltia/cms for documentation and options
