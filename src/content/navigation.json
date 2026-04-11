@@ -1,7 +1,9 @@
-[
-  { "label": "About", "url": "/about" },
-  { "label": "Episodes", "url": "/episodes" },
-  { "label": "iTunes", "url": "#" },
-  { "label": "Spotify", "url": "#" },
-  { "label": "RSS", "url": "/rss.xml" }
-]
+{
+  "links": [
+    { "label": "About", "url": "/about" },
+    { "label": "Episodes", "url": "/episodes" },
+    { "label": "iTunes", "url": "#" },
+    { "label": "Spotify", "url": "#" },
+    { "label": "RSS", "url": "/rss.xml" }
+  ]
+}

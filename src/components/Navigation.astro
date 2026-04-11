@@ -39,8 +39,8 @@ import navLinks from '../content/navigation.json';
     >
       <ul>
         {
-          Array.isArray(navLinks) &&
-            navLinks.map(
+          Array.isArray(navLinks.links) &&
+            navLinks.links.map(
               link =>
                 !link.label?.startsWith('#') && (
                   <li>

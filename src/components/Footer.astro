@@ -13,8 +13,8 @@ import footerLinks from '../content/footer-links.json';
       > by Stuart Mackenzie
     </p>
     {
-      Array.isArray(footerLinks) &&
-        footerLinks.map(link => (
+      Array.isArray(footerLinks.links) &&
+        footerLinks.links.map(link => (
           <a
             href={link.url}
             class="social-icon"

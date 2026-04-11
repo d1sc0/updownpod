@@ -131,7 +131,7 @@ const uniqueId = `audio-player-${Math.random().toString(36).substr(2, 9)}`;
     </section>
     <section class="subscribe-links">
         <ul class="subscribe-platforms">
-          {subscribeLinks.map(link => (
+          {subscribeLinks.links.map(link => (
             <li>
               <a href={link.url} target="_blank" rel="noopener">
                 <Icon name={link.icon} size="35" />
