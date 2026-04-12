@@ -37,6 +37,7 @@ npx ts-node src/scripts/image-generation/generate-preview-images.ts
 - Logs only the generated filename for clarity.
 - The template includes a fallback background for browser preview, but the script injects the correct background at runtime.
 - Only episode Markdown files are processed (no static pages).
+- **Font loading:** The template now includes a Google Fonts link for Jersey 15, ensuring correct font rendering in both browser preview and generated images.
 
 ---
 
