@@ -24,3 +24,5 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 firebase-debug.log*
+
+.fb-service-account.json
