@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.2",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "npm run prebuild && astro dev",
     "start": "astro dev",
     "prebuild": "node src/scripts/pre-build-sveltia-cms-catches.js && ts-node src/scripts/image-generation/generate-og-images.ts && ts-node src/scripts/image-generation/generate-preview-images.ts",
     "build": "astro build",

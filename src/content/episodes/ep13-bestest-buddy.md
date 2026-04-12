@@ -8,6 +8,6 @@ mp3: https://archive.org/download/thebluewound_2602_librivox/bluewound_10_garret
 mp3title: Episode 13 - Bestest Buddy
 ---
 
-![Some wall art](/src/assets/uploaded_images/SJM-37-FULL.jpg)
+![Some wall art](../../assets/uploaded_images/SJM-37-FULL.jpg)
 
 This is a test to see if my new scripts are working. This should build and have fixed the file names and generate the correct images in Production

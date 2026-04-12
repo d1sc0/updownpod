@@ -85,7 +85,15 @@ async function generateOGImages() {
     console.log(`Generating OG: ${outFile}`);
     const page = await browser.newPage();
     await page.setViewport({ width: 1200, height: 630 });
-    await page.setContent(html, { waitUntil: 'networkidle0' });
+    await page.setContent(html, { waitUntil: 'networkidle2' });
+    // Wait for all relevant fonts to be loaded
+    await page.waitForFunction(
+      () => document.fonts.check('1em "Jersey 15"') && document.fonts.ready,
+      { timeout: 15000 },
+    );
+    // Force layout reflow and wait for rendering stability
+    await page.evaluate(() => document.body.offsetHeight);
+    await new Promise(r => setTimeout(r, 500));
     await page.screenshot({
       path: outPath,
       type: 'png',
