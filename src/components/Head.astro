@@ -8,7 +8,7 @@ const siteURL = Astro.site?.toString() || '';
 const urlPath = Astro.url?.pathname?.replace(/\/$/, '') || '';
 const urlId =
   frontmatter?.id || frontmatter?.slug || urlPath.split('/').pop() || 'index';
-const ogImage = `${siteURL}/generated_preview_images/${urlId}.png`;
+const ogImage = `${siteURL}/generated_social_images/${urlId}.png`;
 
 const title =
   pageMeta?.title ||
