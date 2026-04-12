@@ -45,6 +45,48 @@ h2 {
   padding-right: 1.1rem;
 }
 
+.episodeNav {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.nextNav,
+.prevNav {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.nextNav,
+.prevNav {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  height: 4rem;
+  border: 1px solid;
+  border-color: var(--graphite);
+  border-radius: 0.3rem;
+  background-color: var(--blush-pop);
+}
+
+.nextNav a,
+.prevNav a {
+  color: var(--graphite);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.button-p {
+  text-align: center;
+}
+
 p.toplink {
   text-align: center;
 }
@@ -70,4 +112,19 @@ img[src*='LEFT'] {
   margin: 0;
   margin-bottom: 1rem;
   border-radius: 0.3rem;
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+  img[src*='RIGHT'] {
+    width: 50%;
+    float: right;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
+  img[src*='LEFT'] {
+    width: 50%;
+    float: left;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
 }
