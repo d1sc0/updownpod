@@ -28,6 +28,12 @@ A modern Astro v6 site for the Upstairs Downstairs podcast, featuring:
 
 - Node.js 22.12.0 or higher
 
+## CSS Processing
+
+This project uses **PostCSS** with `postcss-preset-env` and **autoprefixer** for modern CSS features and cross-browser compatibility. The configuration is in `postcss.config.cjs` and is automatically picked up by Astro.
+
+**Reminder:** If you do not need modern CSS features or autoprefixer, you can remove `postcss.config.cjs` and the related devDependencies from `package.json`.
+
 ## Docs
 
 See the [docs/](docs/) folder for setup, CMS, image automation, and migration details.
@@ -36,3 +42,15 @@ See the [docs/](docs/) folder for setup, CMS, image automation, and migration de
 
 - [ ] Set up Firebase redirect for /podcast.xml
 - [ ] Update HeadSEO and pageMeta descriptions
+
+## Sveltia CMS Image Uploads
+
+**Important:** When uploading or adding images into posts using Sveltia CMS, you must manually update the Markdown to change image links from:
+
+src/assets/uploaded_images/your-image.png
+
+to:
+
+../../assets/uploaded_images/your-image.png
+
+This ensures images are correctly referenced in the static build.
