@@ -8,8 +8,6 @@ mp3: https://archive.org/download/thebluewound_2602_librivox/bluewound_09_garret
 mp3title: Episode 10 - Slow Saturday
 ---
 
-![](../../assets/uploaded_images/13-using-my-loaf_8193293151_o_LEFT.jpg)
-
 Saturday started with no alarm, no urgency, and no strict plan, which was exactly the point. I went for an easy jog and let the day unfold one decision at a time.
 
 I found a great lunch spot through [Eater](https://www.eater.com/) and later browsed weekend photo inspiration on [Unsplash](https://unsplash.com/). Slow days still count as productive when they refill your tank.
