@@ -11,19 +11,18 @@ This project uses Sveltia CMS (Netlify CMS compatible) for editing podcast episo
 
 To access the CMS, open `/admin/` in your deployed site.
 
-## Image Uploads & Path Correction
+## Prebuild Automation for Sveltia CMS
 
-**Important:** When uploading or adding images into posts using Sveltia CMS, you must manually update the Markdown to change image links from:
+Image path corrections and Markdown file renaming are now handled automatically by the prebuild script:
 
-    src/assets/uploaded_images/your-image.png
+    src/scripts/pre-build-sveltia-cms-catches.js
 
-to:
+This script:
 
-    ../../assets/uploaded_images/your-image.png
+- Fixes image paths in Markdown files (uploaded via Sveltia CMS) to ensure static build compatibility
+- Renames Markdown files to match their `slug` frontmatter (if present)
 
-This ensures images are correctly referenced in the static build.
-
----
+No manual changes are needed after uploading images or creating new posts in the CMS.
 
 ## CSS Processing
 

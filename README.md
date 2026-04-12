@@ -43,14 +43,15 @@ See the [docs/](docs/) folder for setup, CMS, image automation, and migration de
 - [ ] Set up Firebase redirect for /podcast.xml
 - [ ] Update HeadSEO and pageMeta descriptions
 
-## Sveltia CMS Image Uploads
+## Sveltia CMS Prebuild Automation
 
-**Important:** When uploading or adding images into posts using Sveltia CMS, you must manually update the Markdown to change image links from:
+Image path corrections and Markdown file renaming are now handled automatically by the prebuild script:
 
-src/assets/uploaded_images/your-image.png
+src/scripts/pre-build-sveltia-cms-catches.js
 
-to:
+This script:
 
-../../assets/uploaded_images/your-image.png
+- Fixes image paths in Markdown files (uploaded via Sveltia CMS) to ensure static build compatibility
+- Renames Markdown files to match their `slug` frontmatter (if present)
 
-This ensures images are correctly referenced in the static build.
+No manual changes are needed after uploading images or creating new posts in the CMS.

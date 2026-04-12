@@ -47,14 +47,15 @@ The OG and preview image templates include a fallback background image so you ca
 
 When generating images, only the generated filename is shown in the logs for clarity.
 
-## Sveltia CMS Image Uploads
+## Sveltia CMS Prebuild Automation
 
-**Important:** When uploading or adding images into posts using Sveltia CMS, you must manually update the Markdown to change image links from:
+Image path corrections and Markdown file renaming are now handled automatically by the prebuild script:
 
-    src/assets/uploaded_images/your-image.png
+    src/scripts/pre-build-sveltia-cms-catches.js
 
-to:
+This script:
 
-    ../../assets/uploaded_images/your-image.png
+- Fixes image paths in Markdown files (uploaded via Sveltia CMS) to ensure static build compatibility
+- Renames Markdown files to match their `slug` frontmatter (if present)
 
-This ensures images are correctly referenced in the static build.
+No manual changes are needed after uploading images or creating new posts in the CMS.
