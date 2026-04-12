@@ -8,6 +8,6 @@ mp3: https://archive.org/download/thebluewound_2602_librivox/bluewound_10_garret
 mp3title: Episode 12 - Hairy Biker
 ---
 
-![hotdogs](/src/assets/uploaded_images/IMG_3614_Original.jpg)
+![hotdogs](../../assets/uploaded_images/IMG_3614_Original.jpg)
 
 Let's see if this works!

@@ -20,7 +20,8 @@ async function getEpisodes() {
     const content = fs.readFileSync(path.join(EPISODES_DIR, file), 'utf-8');
     const { data } = matter(content);
     const title = data.title ? String(data.title) : file.replace(/\.md$/, '');
-    const id = file.replace(/\.md$/, '');
+    // Use slug frontmatter if present, else fallback to filename
+    const id = data.slug ? String(data.slug) : file.replace(/\.md$/, '');
     return { id, title };
   });
 }
