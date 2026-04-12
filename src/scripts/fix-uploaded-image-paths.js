@@ -1,9 +1,3 @@
-#!/usr/bin/env node
-/**
- * Script to fix image paths in Markdown files before Astro build.
- * Replaces any image links pointing to '/src/assets/uploaded_images' with '../../assets/uploaded_images'.
- */
-
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -11,14 +5,11 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const EPISODES_DIR = path.join(__dirname, '../src/content/episodes');
-const IMAGE_PATH_REGEX = /\]\((\/src\/assets\/uploaded_images\/[^)]+)\)/g;
-const REPLACEMENT = '](../../assets/uploaded_images/$2)';
+const EPISODES_DIR = path.join(__dirname, '../content/episodes');
 
 function fixImagePathsInFile(filePath) {
   let content = fs.readFileSync(filePath, 'utf8');
   let changed = false;
-  // Replace all image links
   content = content.replace(
     /\]\(\/src\/assets\/uploaded_images\/([^\)]+)\)/g,
     (match, p1) => {
