@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "prebuild": "node src/scripts/fix-uploaded-image-paths.js",
+    "prebuild": "node src/scripts/pre-build-sveltia-cms-catches.js",
     "build": "astro build && ts-node src/scripts/image-generation/generate-og-images.ts && ts-node src/scripts/image-generation/generate-preview-images.ts",
     "preview": "astro preview",
     "astro": "astro",
